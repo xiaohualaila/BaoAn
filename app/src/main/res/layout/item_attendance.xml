@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:id="@+id/tab1"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:src="@mipmap/clock"
+            />
+
+        <TextView
+            android:id="@+id/tv_tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab1"
+            android:layout_centerHorizontal="true"
+            android:text="日常"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/oval_tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab1"
+            android:layout_toRightOf="@+id/tv_tab1"
+            android:src="@drawable/shape_oval"/>
+
+        <View
+            android:id="@+id/tab1_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_style_blue"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tab2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/iv_tab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="9dp"
+            android:src="@mipmap/add_material"/>
+
+        <TextView
+            android:id="@+id/tv_tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab2"
+            android:layout_centerHorizontal="true"
+            android:text="加班"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/oval_tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab2"
+            android:layout_toRightOf="@+id/tv_tab2"
+            android:src="@drawable/shape_oval"/>
+        <View
+            android:id="@+id/tab2_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_style_blue"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tab3"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_tab3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:src="@mipmap/priority_high_material"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab3"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="2dp"
+            android:text="临时"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/oval_tab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab3"
+            android:layout_toRightOf="@+id/tv_tab3"
+            android:src="@drawable/shape_oval"/>
+        <View
+            android:id="@+id/tab3_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_style_blue"
+            />
+    </RelativeLayout>
+</LinearLayout>

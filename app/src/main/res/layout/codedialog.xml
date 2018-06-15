@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/ll">
+
+    <RelativeLayout
+        android:id="@+id/box"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_codedialog"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+
+        >
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电子保安证"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="19dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            />
+
+        <TextView
+            android:id="@+id/num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_below="@id/text"
+            android:layout_marginLeft="19dp"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+        <FrameLayout
+            android:id="@+id/refresh"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/num_tv"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="刷新"
+                android:textColor="@color/app_style_blue"
+                android:drawableLeft="@mipmap/refresh_icon"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:textSize="13sp"
+                />
+
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/code_iv"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+    </RelativeLayout>
+</LinearLayout>

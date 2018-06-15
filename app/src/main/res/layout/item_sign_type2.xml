@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rl_root"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_height="wrap_content">
+
+        <!--android:layout_height="450px"-->
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="0.5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/view_gray"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="35dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:visibility="gone"
+            android:id="@+id/line2_sep_start"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/view_gray"
+            />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            tools:text="上班"
+            android:drawableLeft="@mipmap/sign_gray"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:drawablePadding="12dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="58dp"
+            tools:text="要求时间：9月1日 20:00"
+            android:text=""
+            android:textColor="#4A494A"
+            android:textSize="12sp"
+            android:drawableLeft="@mipmap/sign_time"
+            android:drawablePadding="5dp"
+            android:layout_marginRight="23dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sign_location"
+                android:layout_marginTop="2dp"
+                />
+
+            <TextView
+                android:id="@+id/address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="要求位置：(蓝牙)停车场P1"
+                android:text=""
+                android:textColor="#4A494A"
+                android:textSize="12sp"
+                android:layout_marginLeft="7dp"
+                />
+
+
+        </LinearLayout>
+
+        <com.hz.junxinbaoan.view.MyListView
+            android:id="@+id/bluetooth_lv"
+            android:layout_width="match_parent"
+            android:layout_height="158dp"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="16dp"
+            android:divider="#00000000"
+            android:dividerHeight="10dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:background="@mipmap/sign_bluetooth_bg"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="8dp"
+            >
+
+            <TextView
+                android:id="@+id/cur_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前： "
+                android:textSize="12sp"
+                android:textColor="#2095F3"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/refresh_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/sign_refresh"
+                android:layout_centerVertical="true"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/photo_lv_type2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="58dp"
+            android:layout_toRightOf="@id/photo_text"/>
+
+        <FrameLayout
+            android:id="@+id/fl_btn"
+            android:layout_width="115dp"
+            android:layout_height="37dp"
+            android:background="@mipmap/btn"
+            android:paddingBottom="3dp"
+            android:paddingTop="2dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="23dp"
+            >
+
+            <net.qiujuer.genius.ui.widget.Button
+                android:id="@+id/sign_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="签到"
+                android:gravity="center"
+                android:paddingBottom="1dp"
+                android:paddingTop="4dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:gTouchEffect="ripple"
+                app:gTouchColor="@color/colorRipple"
+                />
+
+
+        </FrameLayout>
+        <View
+            android:visibility="gone"
+            android:id="@+id/line2_sep_end"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/view_gray"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

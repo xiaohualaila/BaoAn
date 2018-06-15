@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+    <com.hz.junxinbaoan.view.AnimPtrFrameLayout
+        android:id="@+id/ptrframlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/a_to_z"
+        android:layout_toStartOf="@+id/a_to_z"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <ListView
+            android:id="@+id/people_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            >
+        </ListView>
+
+    </com.hz.junxinbaoan.view.AnimPtrFrameLayout>
+    <!--android:divider="@null"-->
+    <!--android:background="@null"-->
+    <!--android:listSelector="@android:color/transparent"-->
+    <com.hz.junxinbaoan.view.SideBar
+        android:id="@+id/a_to_z"
+        android:layout_width="22dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        >
+
+    </com.hz.junxinbaoan.view.SideBar>
+</RelativeLayout>

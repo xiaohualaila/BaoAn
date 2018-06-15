@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.hz.junxinbaoan.view.AnimPtrFrameLayout
+        android:id="@+id/ptrframlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="22dp">-->
+
+                <!--<com.hz.junxinbaoan.utils.ImageViewPlus-->
+                <!--android:layout_width="10dp"-->
+                <!--android:layout_height="10dp"-->
+                <!--android:src="#2196F3"-->
+                <!--android:layout_marginLeft="23dp"-->
+                <!--android:layout_gravity="center_vertical"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="实际"-->
+                <!--android:layout_marginLeft="6dp"-->
+                <!--android:textColor="#485465"-->
+                <!--/>-->
+
+                <!--<com.hz.junxinbaoan.utils.ImageViewPlus-->
+                <!--android:layout_width="10dp"-->
+                <!--android:layout_height="10dp"-->
+                <!--android:src="#CBE4F6"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_gravity="center_vertical"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="排班"-->
+                <!--android:layout_marginLeft="6dp"-->
+                <!--android:textColor="#485465"-->
+                <!--/>-->
+
+                <!--</LinearLayout>-->
+
+                <TextView
+                    android:id="@+id/time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="22dp"
+                    android:text="9月1日排班  (白班)"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/sign_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.hz.junxinbaoan.view.AnimPtrFrameLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/no_online"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="无排班"
+        android:padding="100dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>

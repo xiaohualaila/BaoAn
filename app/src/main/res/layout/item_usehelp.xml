@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.hz.junxinbaoan.utils.ImageViewPlus
+        android:id="@+id/ava_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="24dp"
+        android:src="@mipmap/webview_ava"
+        android:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ava_iv"
+        android:layout_toRightOf="@id/ava_iv"
+        android:text="Three-line item"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@id/content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/title_tv"
+        android:layout_below="@id/title_tv"
+        android:layout_marginTop="5dp"
+        android:text="some some some"
+        android:textSize="12sp"/>
+
+</RelativeLayout>

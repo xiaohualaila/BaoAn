@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+<RelativeLayout
+android:id="@+id/title_lay"
+android:layout_width="match_parent"
+android:layout_height="60dp"
+android:background="@mipmap/app_bar_bg"
+android:focusable="true"
+android:focusableInTouchMode="true"
+android:gravity="center_vertical">
+
+<FrameLayout
+    android:id="@+id/back"
+    android:layout_width="60dp"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true">
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="12dp"
+        android:background="@mipmap/back"/>
+</FrameLayout>
+
+<TextView
+    android:id="@+id/title_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_toRightOf="@id/back"
+    android:ellipsize="end"
+    android:singleLine="true"
+    android:text="我提交的审批"
+    android:textColor="@color/white"
+    android:textSize="19dp"
+    android:textStyle="bold"
+    />
+
+<FrameLayout
+    android:id="@+id/date_fl"
+    android:layout_width="50dp"
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@mipmap/help_calendare"/>
+
+</FrameLayout>
+</RelativeLayout>
+
+<com.hz.junxinbaoan.view.AnimPtrFrameLayout
+android:id="@+id/ptrframlayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+android:overScrollMode="never"
+android:scrollbars="none"
+    >
+
+<ListView
+    android:id="@+id/approval_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:divider="@null"
+    android:listSelector="@android:color/transparent"
+    android:scrollbars="none"
+    />
+</com.hz.junxinbaoan.view.AnimPtrFrameLayout>
+
+    </LinearLayout>

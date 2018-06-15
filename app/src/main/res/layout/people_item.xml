@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:text="A"
+        android:gravity="center"
+        android:textColor="@color/text_red2"
+        android:textSize="15dp"
+        android:id="@+id/type"
+        />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/guan"
+        android:text="管理层"
+        android:textColor="@color/text_gray2"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:drawableTop="@mipmap/guan"
+        />
+    <FrameLayout
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="15dp"
+        >
+        <com.hz.junxinbaoan.utils.ImageViewPlus
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pic"
+        android:src="@color/picback"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="姓"
+            android:id="@+id/firstname"
+            android:textSize="27dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+    </FrameLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:layout_alignTop="@+id/pic"
+        android:layout_toRightOf="@+id/pic"
+        android:layout_toEndOf="@+id/pic"
+        android:id="@+id/name"
+        />
+
+
+</LinearLayout>

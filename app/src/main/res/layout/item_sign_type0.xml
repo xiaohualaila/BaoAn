@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="0.5dp"
+        android:layout_height="270px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="35dp"
+        android:background="@color/view_gray"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <View
+            android:visibility="gone"
+            android:id="@+id/line0_sep_start"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/view_gray"
+            />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:background="@color/white"
+            android:drawableLeft="@mipmap/sign_gray"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text=""
+            tools:text="上班"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="23dp"
+            android:drawableLeft="@mipmap/sign_time"
+            android:drawablePadding="5dp"
+            android:text=""
+            tools:text="要求时间：9月1日 20:00"
+            android:textColor="#4A494A"
+
+            android:textSize="12sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="58dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:src="@mipmap/sign_location"
+                />
+
+            <TextView
+                android:id="@+id/address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                tools:text="要求位置：(GPS)浙江省嘉兴市南湖区XXX路XXX路交叉口"
+                android:text=""
+                android:textColor="#4A494A"
+                android:textSize="12sp"
+                />
+
+
+        </LinearLayout>
+
+        <com.hz.junxinbaoan.view.TimeTextView
+            android:id="@+id/sign_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginLeft="58dp"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/sign_gray_bg"
+            android:gravity="center"
+            android:paddingBottom="7dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="8dp"
+            android:paddingTop="9dp"
+            android:text=""
+            tools:text="还有十分钟可签到"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            />
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/line0_sep_end"
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/view_gray"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

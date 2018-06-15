@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/title_lay"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:focusable="true"
+        android:background="@mipmap/app_bar_bg"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="12dp"
+                android:background="@mipmap/back" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="意见反馈"
+            android:textColor="@color/white"
+            android:textSize="19.5dp"
+            android:layout_toRightOf="@id/back"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="30dp"
+        android:text="意见"
+        android:textSize="12sp"
+        />
+
+    <EditText
+        android:id="@+id/content_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:hint="请输入反馈文字"
+        android:textCursorDrawable="@drawable/advise_edittext"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="5dp"
+        android:background="#2196F3"
+        />
+
+    <TextView
+        android:id="@+id/text_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 120"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"/>
+
+    <!--<Button-->
+        <!--android:id="@+id/commit_btn"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="37dp"-->
+        <!--android:text="提交"-->
+        <!--android:background="@mipmap/btn"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:layout_marginTop="22dp"-->
+        <!--/>-->
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:background="@mipmap/btn"
+        android:paddingBottom="3dp"
+        android:paddingTop="2dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="22dp"
+        >
+
+        <net.qiujuer.genius.ui.widget.Button
+            android:id="@+id/commit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:text="提交"
+            android:gravity="center"
+            android:paddingBottom="1dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/white"
+            app:gTouchEffect="ripple"
+            app:gTouchColor="@color/colorRipple"
+            />
+
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_lay"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@mipmap/app_bar_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="12dp"
+                android:background="@mipmap/back"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/back"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="我的排班"
+            android:textColor="@color/white"
+            android:textSize="19.5dp"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white">
+
+
+                <ImageView
+                    android:id="@+id/left_iv"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/scheduling_left"
+                    />
+
+                <ImageView
+                    android:id="@+id/right_iv"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/scheduling_right"
+                    />
+
+                <TextView
+                    android:id="@+id/time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="四月 2017"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SU"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="M"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TU"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="W"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TH"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="F"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SA"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <com.codbking.calendar.CalendarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.codbking.calendar.CalendarDateView
+                    android:id="@+id/calendarDateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <ListView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    />
+
+            </com.codbking.calendar.CalendarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="#979797"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                >
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8月16日  (白班)"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+                <net.qiujuer.genius.ui.widget.Button
+                    android:id="@+id/road"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/btn"
+                    android:drawableLeft="@mipmap/trending_up_material"
+                    android:drawableStart="@mipmap/trending_up_material"
+                    android:gravity="center"
+                    android:text="轨迹"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:gTouchColor="@color/colorRipple"
+                    app:gTouchEffect="ripple"/>
+            </LinearLayout>
+
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/sign_rv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="10dp"/>-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/tab1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tab1_work"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableTop="@mipmap/clock"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="6dp"-->
+            <!--android:paddingTop="6dp"-->
+            <!--android:text="日常"-->
+            <!--android:textColor="@color/text_gray2"-->
+            <!--android:textSize="14dp"-->
+            <!--/>-->
+
+            <!--<View-->
+            <!--android:id="@+id/tab1_line"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginBottom="6dp"-->
+            <!--android:background="@color/app_style_blue"-->
+            <!--/>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/tab2"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tab2_overtime"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableTop="@mipmap/add_material"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="6dp"-->
+            <!--android:paddingTop="6dp"-->
+            <!--android:text="加班"-->
+            <!--android:textColor="@color/text_gray2"-->
+            <!--android:textSize="15dp"-->
+            <!--/>-->
+
+            <!--<View-->
+            <!--android:id="@+id/tab2_line"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginBottom="6dp"-->
+            <!--android:background="@color/app_style_blue"-->
+            <!--&gt;</View>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/tab3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tab3_temporary"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawableTop="@mipmap/priority_high_material"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="6dp"-->
+            <!--android:paddingTop="6dp"-->
+            <!--android:text="临时"-->
+            <!--android:textColor="@color/text_gray2"-->
+            <!--android:textSize="15dp"-->
+            <!--/>-->
+
+            <!--<View-->
+            <!--android:id="@+id/tab3_line"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginBottom="6dp"-->
+            <!--android:background="@color/app_style_blue"-->
+            <!--&gt;</View>-->
+            <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+            <include layout="@layout/item_scheduling"/>
+
+            <FrameLayout
+                android:id="@+id/container_fl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/num1_tv"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:background="@drawable/shape_calendar"-->
+            <!--android:text="1"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:gravity="center"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginLeft="23dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/time1_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="15sp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:text="8月16日"-->
+            <!--android:layout_toRightOf="@id/num1_tv"-->
+            <!--android:layout_alignTop="@id/num1_tv"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/work_time1_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/time1_tv"-->
+            <!--android:layout_alignLeft="@id/time1_tv"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="上班时间 18:00"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_marginTop="14dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/address1_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_below="@id/work_time1_tv"-->
+            <!--android:layout_alignLeft="@id/work_time1_tv"-->
+            <!--android:drawableLeft="@mipmap/address_icon"-->
+            <!--android:text="浙江省杭州市拱墅区"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:drawablePadding="8dp"-->
+            <!--android:maxLines="2"-->
+            <!--android:ellipsize="end"-->
+            <!--/>-->
+
+            <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="65dp"-->
+            <!--android:background="@color/line_view"-->
+            <!--android:layout_below="@id/num1_tv"-->
+            <!--android:layout_marginLeft="35dp"-->
+            <!--android:layout_marginTop="18dp"/>-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="20dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/num2_tv"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:background="@drawable/shape_calendar"-->
+            <!--android:text="2"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:gravity="center"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginLeft="23dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/time2_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="15sp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:text="8月16日"-->
+            <!--android:layout_toRightOf="@id/num2_tv"-->
+            <!--android:layout_alignTop="@id/num2_tv"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/work_time2_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/time2_tv"-->
+            <!--android:layout_alignLeft="@id/time2_tv"-->
+            <!--android:textSize="12sp"-->
+            <!--android:text="上班时间 18:00"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_marginTop="14dp"-->
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/address2_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_below="@id/work_time2_tv"-->
+            <!--android:layout_alignLeft="@id/work_time2_tv"-->
+            <!--android:drawableLeft="@mipmap/address_icon"-->
+            <!--android:text="浙江省杭州市拱墅区"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:drawablePadding="8dp"-->
+            <!--android:maxLines="2"-->
+            <!--android:ellipsize="end"-->
+            <!--/>-->
+
+            <!--</RelativeLayout>-->
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

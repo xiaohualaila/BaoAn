@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">保安通</string>
+    <string name="phone">0123456789Xx</string>
+    <string name="vcode">V2.0</string>
+    <string name="company_name">©钧信保安 2018</string>
+    <string name="pwd_filter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+    <string name="phone_">0123456789 </string>
+    <string name="vcodes">2.0</string>
+
+
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="notifyAlertMsg">由于缺少必要权限,无法正常使用对应功能。\n\n请点击\"设置\"-\"权限管理\"-打开</string>
+    <string name="setting">设置</string>
+    <string name="cancel">取消</string>
+    <string name="noRolePermission">"您暂无权限操作此功能,请联系管理员."</string>
+</resources>
