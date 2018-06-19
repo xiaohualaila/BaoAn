@@ -112,7 +112,7 @@ public class WorkTimeAdapter extends RecyclerView.Adapter<WorkTimeAdapter.MyView
 
 
         if (position > topdata.size() - 1) {   //29
-            holder.day.setText( (position + 1) + "" );
+            holder.day.setText( (position + 1) + "" );//设置具体哪一天
             //改变深蓝色高度
             ViewGroup.LayoutParams workParams = holder.time_work.getLayoutParams();
             workParams.height = 0;

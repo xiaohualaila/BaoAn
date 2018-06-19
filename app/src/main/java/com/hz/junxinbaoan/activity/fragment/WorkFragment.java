@@ -100,6 +100,7 @@ public class WorkFragment extends BaseFragment {
         workTimeChart.setAdapter( worktimeAdapter );
     }
 
+
     @Override
     public void onResume() {
         super.onResume();

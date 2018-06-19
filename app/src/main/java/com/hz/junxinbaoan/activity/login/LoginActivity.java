@@ -457,27 +457,27 @@ public class LoginActivity extends BaseActivity {
 
                                         final int finalJ = j;
                                         final int finalJ1 = j;
-                                        new AlertDialog.Builder( mBaseActivity )
-                                                .setTitle( "" )
-                                                .setMessage( "有新版需要更新" )
-                                                .setPositiveButton( "是", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                                        Intent intent = new Intent();
-//                                                        intent.setAction("android.intent.action.VIEW");
-//                                                        Uri content_url = Uri.parse(result.getData().get(finalJ)
-//                                                          .getAppInfoUrl());
-//                                                        intent.setData(content_url);
-//                                                        startActivity(intent);
-                                                        vcode = result.getData().get( finalJ ).getAppInfoVersion()
-                                                                + (int) (Math.random() * 100);
-                                                        apk_dialog.show();
-                                                        apk_dialog.setCancelable( false );
-                                                        seek = apk_dialog.getSeekBar();
-                                                        downApk( result.getData().get( finalJ1 ).getAppInfoUrl() );
-                                                    }
-                                                } ).setCancelable( false )
-                                                .show();
+//                                        new AlertDialog.Builder( mBaseActivity )
+//                                                .setTitle( "" )
+//                                                .setMessage( "有新版需要更新" )
+//                                                .setPositiveButton( "是", new DialogInterface.OnClickListener() {
+//                                                    @Override
+//                                                    public void onClick(DialogInterface dialogInterface, int i) {
+////                                                        Intent intent = new Intent();
+////                                                        intent.setAction("android.intent.action.VIEW");
+////                                                        Uri content_url = Uri.parse(result.getData().get(finalJ)
+////                                                          .getAppInfoUrl());
+////                                                        intent.setData(content_url);
+////                                                        startActivity(intent);
+//                                                        vcode = result.getData().get( finalJ ).getAppInfoVersion()
+//                                                                + (int) (Math.random() * 100);
+//                                                        apk_dialog.show();
+//                                                        apk_dialog.setCancelable( false );
+//                                                        seek = apk_dialog.getSeekBar();
+//                                                        downApk( result.getData().get( finalJ1 ).getAppInfoUrl() );
+//                                                    }
+//                                                } ).setCancelable( false )
+//                                                .show();
                                     } else {
                                     }
                                     break;
