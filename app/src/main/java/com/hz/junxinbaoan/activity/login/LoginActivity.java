@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.FileProvider;
+
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -42,6 +42,7 @@ import com.hz.junxinbaoan.result.CodeResult;
 import com.hz.junxinbaoan.result.UserInfoResult;
 import com.hz.junxinbaoan.utils.CommonUtils;
 import com.hz.junxinbaoan.utils.Commonutil;
+import com.hz.junxinbaoan.utils.DownApk;
 import com.hz.junxinbaoan.utils.MyToast;
 import com.hz.junxinbaoan.utils.ResultHandler;
 
@@ -68,7 +69,7 @@ import retrofit2.http.POST;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements DownApk.ProgressState{
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_CODE = 1;
@@ -422,27 +423,26 @@ public class LoginActivity extends BaseActivity {
 
                                         final int finalJ = j;
                                         final int finalJ1 = j;
-//                                        new AlertDialog.Builder( mBaseActivity )
-//                                                .setTitle( "" )
-//                                                .setMessage( "有新版需要更新" )
-//                                                .setPositiveButton( "是", new DialogInterface.OnClickListener() {
-//                                                    @Override
-//                                                    public void onClick(DialogInterface dialogInterface, int i) {
-////                                                        Intent intent = new Intent();
-////                                                        intent.setAction("android.intent.action.VIEW");
-////                                                        Uri content_url = Uri.parse(result.getData().get(finalJ)
-////                                                          .getAppInfoUrl());
-////                                                        intent.setData(content_url);
-////                                                        startActivity(intent);
-//                                                        vcode = result.getData().get( finalJ ).getAppInfoVersion()
-//                                                                + (int) (Math.random() * 100);
-//                                                        apk_dialog.show();
-//                                                        apk_dialog.setCancelable( false );
-//                                                        seek = apk_dialog.getSeekBar();
-//                                                        downApk( result.getData().get( finalJ1 ).getAppInfoUrl() );
-//                                                    }
-//                                                } ).setCancelable( false )
-//                                                .show();
+                                        new AlertDialog.Builder( mBaseActivity )
+                                                .setTitle( "" )
+                                                .setMessage( "有新版需要更新" )
+                                                .setPositiveButton( "是", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        dialogInterface.dismiss();
+                                                        vcode = result.getData().get( finalJ ).getAppInfoVersion()
+                                                                + (int) (Math.random() * 100);
+                                                        apk_dialog.show();
+                                                        apk_dialog.setCancelable( false );
+                                                        seek = apk_dialog.getSeekBar();
+                                                        DownApk downApk = new DownApk(vcode,myApplication,
+                                                                result.getData().get( finalJ1 ).getAppInfoUrl());
+                                                        downApk.downApk();
+                                                        downApk.setProgressState(LoginActivity.this);
+
+                                                    }
+                                                } ).setCancelable( false )
+                                                .show();
                                     } else {
                                     }
                                     break;
@@ -469,98 +469,28 @@ public class LoginActivity extends BaseActivity {
     }
 
     String vcode;
-    DownloadManager downloadManager;
 
-    public void downApk(String url) {
-//        seek.setVisibility(View.VISIBLE);
-        //创建下载任务,downloadUrl就是下载链接
-        DownloadManager.Request request = new DownloadManager.Request( Uri.parse( url ) );
-//指定下载路径和下载文件名
-
-        request.setDestinationInExternalPublicDir( "/download/", "baoan" + vcode + ".apk" );
-//获取下载管理器
-        downloadManager = (DownloadManager) mBaseActivity.getSystemService( Context.DOWNLOAD_SERVICE );
-//将下载任务加入下载队列，否则不会进行下载
-        updateViews( downloadManager.enqueue( request ) );
-    }
-
-    private void updateViews(final Long downlaodId) {
-        final Timer myTimer = new Timer();
-        myTimer.schedule( new TimerTask() {
-            @SuppressLint("NewApi")
-            @Override
-            public void run() {
-                DownloadManager.Query query = new DownloadManager.Query().setFilterById( downlaodId );
-                Cursor cursor = ((DownloadManager) getSystemService( Context.DOWNLOAD_SERVICE )).query( query );
-                cursor.moveToFirst();
-                float bytes_downloaded = cursor.getInt( cursor.getColumnIndex( DownloadManager
-                        .COLUMN_BYTES_DOWNLOADED_SO_FAR ) );
-                float bytes_total = cursor.getInt( cursor.getColumnIndex( DownloadManager.COLUMN_TOTAL_SIZE_BYTES ) );
-                cursor.close();
-                final int dl_progress = (int) (bytes_downloaded * 100 / bytes_total);
-                Log.i( "czx", "progress:" + dl_progress );
-                if (dl_progress >= 100) {
-                    myTimer.cancel();
-                    runOnUiThread( new Runnable() {
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            MyToast.showToast( mBaseActivity, "下载完成" );
-                            apk_dialog.dismiss();
-                            seek.setProgress( dl_progress );
-//                           seek.setVisibility(View.GONE);
-                            String path = "/storage/emulated/0/download/" + "baoan" + vcode + ".apk";
-                            setPermission(path);
-                            openFile(path);
-
-                        }
-                    } );
-                } else {
-                    runOnUiThread( new Runnable() {
-                        @Override
-                        public void run() {
-                            seek.setProgress( dl_progress );
-//                            mDownloadFileBtn.setText(dl_progress + "%");
-                        }
-                    } );
-
+    @Override
+    public void setSeek(final int dl_progress) {
+        if (dl_progress >= 100) {
+            runOnUiThread( new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    MyToast.showToast( myApplication, "下载完成" );
+                    apk_dialog.dismiss();
+                    seek.setVisibility(View.GONE);
                 }
-            }
-        }, 0, 800 );
-    }
-
-    /**
-     * 提升读写权限
-     * @return
-     * @throws IOException
-     */
-    private void setPermission(String filePath) {
-        String command = "chmod " + "777" + " " + filePath;
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            runtime.exec(command);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void openFile(String path) {
-
-        File file = new File( path );
-        Intent intent = new Intent();
-        intent.setAction( Intent.ACTION_VIEW );
-        intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
-        //判读版本是否在7.0以上
-        Uri apkUri = null;
-        if (Build.VERSION.SDK_INT >= 24) {
-            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK );
-             apkUri = FileProvider.getUriForFile( mBaseActivity, "com.hz.junxinbaoan.fileProvider", file );
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            } );
         } else {
-            apkUri = Uri.fromFile(file);
+            runOnUiThread( new Runnable() {
+                @Override
+                public void run() {
+                    seek.setProgress( dl_progress );
+                }
+            } );
 
         }
-        intent.setDataAndType( apkUri, "application/vnd.android.package-archive" );
-        startActivity( intent );
     }
+
 }
