@@ -122,47 +122,47 @@ public class MyApplication extends MultiDexApplication {
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
 
         // 出现应用级异常时的处理
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            String errMsg = "";
-
-            @Override
-            public void uncaughtException(Thread thread, final Throwable throwable) {
-                StringWriter sw = new StringWriter();
-                PrintWriter pw = new PrintWriter(sw);
-                throwable.printStackTrace(pw);
-                errMsg = sw.toString();
-                writeLogToFile(errMsg);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-//                        MobclickAgent.reportError(getApplicationContext(),throwable);
-                        Looper.prepare();
-                        if (mActivityList.size() > 0) {
-                            new AlertDialog.Builder(getCurrentActivity()).setTitle(R.string.app_name).setMessage(Log
-                                    .getStackTraceString(throwable))
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // 强制退出程序
-                                            finish();
-                                        }
-                                    }).setCancelable(false).show();
-
-                        } else {
-                            if (Settings.DEBUG) {
-                                Log.e(Settings.TAG, errMsg);
-                            }
-                            finish();
-                        }
-                        Looper.loop();
-                    }
-                }).start();
-                if (Settings.DEBUG) {
-                    // 错误LOG
-                    Log.e(Settings.TAG, throwable.getMessage(), throwable);
-                }
-            }
-        });
+//        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+//            String errMsg = "";
+//
+//            @Override
+//            public void uncaughtException(Thread thread, final Throwable throwable) {
+//                StringWriter sw = new StringWriter();
+//                PrintWriter pw = new PrintWriter(sw);
+//                throwable.printStackTrace(pw);
+//                errMsg = sw.toString();
+//                writeLogToFile(errMsg);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+////                        MobclickAgent.reportError(getApplicationContext(),throwable);
+//                        Looper.prepare();
+//                        if (mActivityList.size() > 0) {
+//                            new AlertDialog.Builder(getCurrentActivity()).setTitle(R.string.app_name).setMessage(Log
+//                                    .getStackTraceString(throwable))
+//                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(DialogInterface dialog, int which) {
+//                                            // 强制退出程序
+//                                            finish();
+//                                        }
+//                                    }).setCancelable(false).show();
+//
+//                        } else {
+//                            if (Settings.DEBUG) {
+//                                Log.e(Settings.TAG, errMsg);
+//                            }
+//                            finish();
+//                        }
+//                        Looper.loop();
+//                    }
+//                }).start();
+//                if (Settings.DEBUG) {
+//                    // 错误LOG
+//                    Log.e(Settings.TAG, throwable.getMessage(), throwable);
+//                }
+//            }
+//        });
         regToWx();
 //        locationService = new LocationService(getApplicationContext());
 //        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
