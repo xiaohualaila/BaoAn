@@ -101,42 +101,6 @@ public class LoginActivity extends BaseActivity {
         apk_dialog = new Apk_dialog( mBaseActivity );
         Log.e( TAG, "findViews: " + Environment.getExternalStorageDirectory() + "----" + Environment
                 .getExternalStoragePublicDirectory( DIRECTORY_DOWNLOADS ) );
-//        //权限列表
-//        permissionItems = new ArrayList<PermissionItem>();
-//        permissionItems.add( new PermissionItem( Manifest.permission.CAMERA, "Camera", R.drawable
-//                .permission_ic_camera ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.WRITE_EXTERNAL_STORAGE, "Storage", R
-//                .drawable.permission_ic_storage ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.ACCESS_COARSE_LOCATION, "Location", R
-//                .drawable.permission_ic_location ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.READ_PHONE_STATE, "Phone", R
-//                .drawable.permission_ic_contacts ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.ACCESS_FINE_LOCATION) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.READ_EXTERNAL_STORAGE));
-//        HiPermission.create( mBaseActivity )
-//                .permissions( permissionItems )
-//                .animStyle( R.style.PermissionAnimModal )//设置动画
-//                .style( R.style.PermissionDefaultBlueStyle )//设置主题
-//                .checkMutiPermission( new PermissionCallback() {
-//                    @Override
-//                    public void onClose() {
-//                        Log.e( TAG, "close" );
-//                        finish();
-//                    }
-//
-//                    @Override
-//                    public void onFinish() {
-//                    }
-//
-//                    @Override
-//                    public void onDeny(String permission, int position) {
-//                        Log.e( TAG,permission+  "close" );
-//                    }
-//
-//                    @Override
-//                    public void onGuarantee(String permission, int position) {
-//                    }
-//                } );
     }
 
     private boolean isPasswordType = true;

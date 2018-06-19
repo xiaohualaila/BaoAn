@@ -48,8 +48,6 @@ import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
 
-//import android.support.v4.app.FragmentActivity;
-// C:\Users\yaoyb\Desktop\yueqing_jar\lvguoguo_debug.jks
 
 /**
  * Activity基类
@@ -74,58 +72,15 @@ public class BaseActivity extends FragmentActivity {
         Log.e( "TAG", "BaseActivity savedInstanceState " + savedInstanceState );
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         mBaseActivity = this;
-//        //权限列表
-//        permissionItems = new ArrayList<PermissionItem>();
-//        permissionItems.add( new PermissionItem( Manifest.permission.CAMERA, "Camera", R.drawable
-//                .permission_ic_camera ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.WRITE_EXTERNAL_STORAGE, "Storage", R
-//                .drawable.permission_ic_storage ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.ACCESS_COARSE_LOCATION, "Location", R
-//                .drawable.permission_ic_location ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.READ_PHONE_STATE, "Phone", R
-//                .drawable.permission_ic_contacts ) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.ACCESS_FINE_LOCATION) );
-//        permissionItems.add( new PermissionItem( Manifest.permission.READ_EXTERNAL_STORAGE));
-//        HiPermission.create( mBaseActivity )
-//                .permissions( permissionItems )
-//                .animStyle( R.style.PermissionAnimModal )//设置动画
-//                .style( R.style.PermissionDefaultBlueStyle )//设置主题
 //
-//                .checkMutiPermission( new PermissionCallback() {
-//                    @Override
-//                    public void onClose() {
-//                    }
+//        if (null!= savedInstanceState){
 //
-//                    @Override
-//                    public void onFinish() {
-//                    }
-//
-//                    @Override
-//                    public void onDeny(String permission, int position) {
-//                    }
-//
-//                    @Override
-//                    public void onGuarantee(String permission, int position) {
-//                    }
-//                } );
-        //        File logf = new File(Environment.getExternalStorageDirectory()
-        //                + File.separator + "DemoLog.txt");
-        //
-        //        try {
-        //            mLogWriter = LogWriter.open(logf.getAbsolutePath());
-        //        } catch (IOException e) {
-        //            // TODO Auto-generated catch block
-        //            Log.d(tag, e.getMessage());
-        //        }
-
-        if (null!= savedInstanceState){
-
-            Log.i( "TAG", "onCreate savedInstanceState:   " + (null!= savedInstanceState) );
-            Intent intent = new Intent( mBaseActivity, WelcomeActivity.class );
-            intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-            startActivity( intent );
-            MyApplication.getInstance().finish();
-        }
+//            Log.i( "TAG", "onCreate savedInstanceState:   " + (null!= savedInstanceState) );
+//            Intent intent = new Intent( mBaseActivity, WelcomeActivity.class );
+//            intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+//            startActivity( intent );
+//            MyApplication.getInstance().finish();
+//        }
         requestWindowFeature( Window.FEATURE_NO_TITLE );
 
         myApplication = MyApplication.getInstance();
@@ -153,59 +108,6 @@ public class BaseActivity extends FragmentActivity {
         ButterKnife.bind( mBaseActivity );
     }
 
-
-    //    private void setTitleBarColor() {
-    ////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-    ////            setTranslucentStatus(true);
-    ////            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-    ////            tintManager.setStatusBarTintEnabled(true);
-    ////            tintManager.setStatusBarTintResource(R.color.title_color);//通知栏所需颜色
-    ////        }
-    //    }
-    //
-    //
-    //
-    //    @TargetApi(19)
-    //    private void setTranslucentStatus(boolean on) {
-    //        Window win = getWindow();
-    //        WindowManager.LayoutParams winParams = win.getAttributes();
-    //        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-    //        if (on) {
-    //            winParams.flags |= bits;
-    //        } else {
-    //            winParams.flags &= ~bits;
-    //        }
-    //        win.setAttributes(winParams);
-    //    }
-
-//    //*************************************// TODO: 2017/3/9 0009 状态栏修改代码分割线
-//    protected int                  mColorId;//状态栏的默认背景色
-//    private   SystemBarTintManager tintManager;
-
-//    /**
-//     * 初始化沉浸式
-//     */
-//    private void initStateBar() {
-//        setColorId();
-//        //        if (isNeedLoadStatusBar()) {
-//        //            loadStateBar();
-//        //        }
-//        loadStateBar();
-//    }
-//
-//    private void loadStateBar() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            setTranslucentStatus(true);
-//        }
-//        tintManager = new SystemBarTintManager(this);
-//        // 激活状态栏设置
-//        tintManager.setStatusBarTintEnabled(true);
-//        // 激活导航栏设置
-//        tintManager.setNavigationBarTintEnabled(true);
-//        // 设置一个状态栏颜色
-//        tintManager.setStatusBarTintResource(getColorId());
-//    }
-
     @TargetApi(19)
     private void setTranslucentStatus(boolean on) {
         Window win = getWindow();
@@ -218,26 +120,6 @@ public class BaseActivity extends FragmentActivity {
         }
         win.setAttributes( winParams );
     }
-
-//    /**
-//     * 如果子类使用非默认的StatusBar,就重写此方法,传入布局的id
-//     */
-//    protected void setColorId() {
-//        this.mColorId = Color.TRANSPARENT;//子类重写方式
-//    }
-//
-//    protected int getColorId() {
-//        return mColorId;
-//    }
-//
-//    /**
-//     * 子类是否需要实现沉浸式,默认需要
-//     *
-//     * @return
-//     */
-//    protected boolean isNeedLoadStatusBar() {
-//        return true;
-//    }
 
 
     //*************************************// TODO: 2017/3/9 0009 状态栏修改代码分割线

@@ -11,12 +11,14 @@ import com.hz.junxinbaoan.MainActivity;
 import com.hz.junxinbaoan.MyApplication;
 import com.hz.junxinbaoan.R;
 import com.hz.junxinbaoan.activity.base.BaseActivity;
+import com.hz.junxinbaoan.api.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.params.BaseParam;
 import com.hz.junxinbaoan.params.LoginParam;
 import com.hz.junxinbaoan.params.UserParams;
 import com.hz.junxinbaoan.result.CodeResult;
 import com.hz.junxinbaoan.result.UserInfoResult;
+
 import com.hz.junxinbaoan.utils.CommonUtils;
 import com.hz.junxinbaoan.utils.MyToast;
 import com.hz.junxinbaoan.utils.ResultHandler;
@@ -30,10 +32,6 @@ import me.weyye.hipermission.PermissionItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
-
 public class WelcomeActivity extends BaseActivity {
     private static final String TAG = "WelcomeActivity";
     private boolean haveCode = false;
@@ -116,52 +114,38 @@ public class WelcomeActivity extends BaseActivity {
         }
     };
 
-    //获取个人信息接口
-    private interface GetData2 {
-        @FormUrlEncoded
-        @POST(Constants.GETUSERINFO)
-        Call<UserInfoResult> getData(@FieldMap Map<String, Object> map);
-    }
+//    //获取个人信息接口
+//    private interface GetData2 {
+//        @FormUrlEncoded
+//        @POST(Constants.GETUSERINFO)
+//        Call<UserInfoResult> getData(@FieldMap Map<String, Object> map);
+//    }
 
     //获取个人信息
     private void getUserInfo(final String token) {
         showDialog( true );
-        GetData2 getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetData2.class );
+        BaseApi getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( BaseApi.class );
         UserParams params = new UserParams();
         params.setPushId( CommonUtils.getPushId() );
         params.setAccess_token( token );
-        Call<UserInfoResult> call = getData.getData( CommonUtils.getPostMap( params ) );
+        Call<UserInfoResult> call = getData.getUserInfo( CommonUtils.getPostMap( params ) );
         call.enqueue( new Callback<UserInfoResult>() {
             @Override
             public void onResponse(final Call<UserInfoResult> call, final Response<UserInfoResult> response) {
                 showDialog( false );
-                ResultHandler.Handle( mBaseActivity, response.body(), new ResultHandler
-                        .OnHandleListener<UserInfoResult>() {
-                    @Override
-                    public void onSuccess(UserInfoResult result) {
-                        if (result.getData() != null) {
-                            result.setAccess_token( token );
-                            MyApplication.mUserInfo.saveUserInfo( result );
-                            //用户登录及注销埋点
-                            manService.getMANAnalytics().updateUserAccount( result.getData().getUserName(), result
-                                    .getData().getUserId() );
-                            startActivity( new Intent( WelcomeActivity.this, MainActivity.class ) );
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onNetError() {
-                        startActivity( new Intent( WelcomeActivity.this, LoginActivity.class ) );
+                if(response.isSuccessful()){
+                    UserInfoResult result= response.body();
+                    if (result.getData() != null) {
+                        result.setAccess_token( token );
+                        MyApplication.mUserInfo.saveUserInfo( result );
+                        //用户登录及注销埋点
+                        manService.getMANAnalytics().updateUserAccount( result.getData().getUserName(), result
+                                .getData().getUserId() );
+                        startActivity( new Intent( WelcomeActivity.this, MainActivity.class ) );
                         finish();
                     }
+                }
 
-                    @Override
-                    public void onError(String code, String message) {
-                        startActivity( new Intent( WelcomeActivity.this, LoginActivity.class ) );
-                        finish();
-                    }
-                } );
             }
 
             @Override
@@ -171,20 +155,13 @@ public class WelcomeActivity extends BaseActivity {
                 finish();
             }
         } );
-    }
 
-
-    //版本
-    private interface GetData3 {
-        @FormUrlEncoded
-        @POST(Constants.VCODE)
-        Call<CodeResult> getData(@FieldMap Map<String, Object> map);
     }
 
     //版本
     private void getVCode() {
-        GetData3 getData = CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
-                GetData3.class );
+        BaseApi getData =  CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
+                BaseApi.class );
         BaseParam param = new BaseParam();
         Call<CodeResult> call = getData.getData( CommonUtils.getPostMap( param ) );
         call.enqueue( new Callback<CodeResult>() {
@@ -203,7 +180,6 @@ public class WelcomeActivity extends BaseActivity {
                                     if (!result.getData().get( j ).getAppInfoVersion().equals( getResources()
                                             .getString( R.string.vcodes ) )) {
                                         haveCode = true;
-                                    } else {
                                     }
                                     break;
                                 }
