@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -39,11 +39,11 @@ import retrofit2.http.POST;
  */
 
 public class HelpActivity extends BaseActivity {
-    @InjectView(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.ptrframlayout)
+    @BindView(R.id.ptrframlayout)
     AnimPtrFrameLayout ptrframlayout;
 
     LinearLayoutManager linearLayoutManager;

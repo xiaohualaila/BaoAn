@@ -80,7 +80,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
@@ -115,37 +115,37 @@ import rx.schedulers.Schedulers;
 public class HelpCommitActivity extends BaseActivity implements LocationSource,
         AMapLocationListener, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener {
     private static final String TAG = "HelpCommitActivity";
-    @InjectView(R.id.record)
+    @BindView(R.id.record)
     Button record;
-    @InjectView(R.id.photo)
+    @BindView(R.id.photo)
     Button photo;
-    @InjectView(R.id.ll)
+    @BindView(R.id.ll)
     LinearLayout ll;
-    @InjectView(R.id.photo_rv)
+    @BindView(R.id.photo_rv)
     RecyclerView photo_rv;
-    @InjectView(R.id.record_rl)
+    @BindView(R.id.record_rl)
     RelativeLayout record_rl;
-    @InjectView(R.id.record_play)
+    @BindView(R.id.record_play)
     Button record_play;
-    @InjectView(R.id.del)
+    @BindView(R.id.del)
     ImageView del;
-    @InjectView(R.id.list_fl)
+    @BindView(R.id.list_fl)
     FrameLayout list_fl;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.map)
+    @BindView(R.id.map)
     TextureMapView mapView;
-    @InjectView(R.id.myLayout)
+    @BindView(R.id.myLayout)
     MyLayout myLayout;
-    @InjectView(R.id.scrollView)
+    @BindView(R.id.scrollView)
     ScrollView scrollView;
-    @InjectView(R.id.address_tv)
+    @BindView(R.id.address_tv)
     TextView address_tv;
-    @InjectView(R.id.commit_btn)
+    @BindView(R.id.commit_btn)
     net.qiujuer.genius.ui.widget.Button commit_btn;
-    @InjectView(R.id.content_et)
+    @BindView(R.id.content_et)
     EditText content_et;
-    @InjectView(R.id.howlong)
+    @BindView(R.id.howlong)
     TextView howlong;
     //录音相关
     private PopupWindowFactory mPop;

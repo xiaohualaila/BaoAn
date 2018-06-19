@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,43 +63,43 @@ public class SchedulingActivity extends BaseActivity implements NormalFragment.C
         .CallBackValue,TemporaryFragment.CallBackValue {
     private static final String TAG = "SchedulingActivity";
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.calendarDateView)
+    @BindView(R.id.calendarDateView)
     CalendarDateView calendarDateView;
-    @InjectView(R.id.time_tv)
+    @BindView(R.id.time_tv)
     TextView time_tv;
-    @InjectView(R.id.left_iv)
+    @BindView(R.id.left_iv)
     ImageView left_iv;
-    @InjectView(R.id.right_iv)
+    @BindView(R.id.right_iv)
     ImageView right_iv;
-    @InjectView(R.id.date_tv)
+    @BindView(R.id.date_tv)
     TextView date_tv;
 
 
-    @InjectView(R.id.road)
+    @BindView(R.id.road)
     Button road;
 
-    @InjectView(R.id.tab1)
+    @BindView(R.id.tab1)
     RelativeLayout tab1;
-    @InjectView(R.id.tab1_line)
+    @BindView(R.id.tab1_line)
     View tab1Line;
-    @InjectView(R.id.oval_tab1)
+    @BindView(R.id.oval_tab1)
     ImageView ovalTab1;
-    @InjectView(R.id.tab2)
+    @BindView(R.id.tab2)
     RelativeLayout tab2;
-    @InjectView(R.id.tab2_line)
+    @BindView(R.id.tab2_line)
     View tab2Line;
-    @InjectView(R.id.oval_tab2)
+    @BindView(R.id.oval_tab2)
     ImageView ovalTab2;
-    @InjectView(R.id.tab3)
+    @BindView(R.id.tab3)
     RelativeLayout tab3;
-    @InjectView(R.id.tab3_line)
+    @BindView(R.id.tab3_line)
     View tab3Line;
-    @InjectView(R.id.oval_tab3)
+    @BindView(R.id.oval_tab3)
     ImageView ovalTab3;
 
-    @InjectView(R.id.container_fl)
+    @BindView(R.id.container_fl)
     FrameLayout containerFl;
 
     private CalendarBean curDate;
@@ -430,7 +430,7 @@ public class SchedulingActivity extends BaseActivity implements NormalFragment.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         // TODO: add setContentView(...) invocation
-        ButterKnife.inject( this );
+        ButterKnife.bind( this );
     }
 
     /**

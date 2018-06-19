@@ -54,7 +54,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.InjectView;
+import butterknife.BindView;
+import butterknife.BindView;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
@@ -71,21 +72,21 @@ public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_CODE = 1;
-    @InjectView(R.id.icon_mine)
+    @BindView(R.id.icon_mine)
     ImageView iconMine;
-    @InjectView(R.id.phone)
+    @BindView(R.id.phone)
     EditText phone;
-    @InjectView(R.id.icon_password)
+    @BindView(R.id.icon_password)
     ImageView iconPassword;
-    @InjectView(R.id.password)
+    @BindView(R.id.password)
     EditText password;
-    @InjectView(R.id.seePassword)
+    @BindView(R.id.seePassword)
     FrameLayout seePassword;
-    @InjectView(R.id.login)
+    @BindView(R.id.login)
     Button login;
-    @InjectView(R.id.forget)
+    @BindView(R.id.forget)
     TextView forget;
-    @InjectView(R.id.to_register)
+    @BindView(R.id.to_register)
     Button toRegister;
 
     Apk_dialog apk_dialog;

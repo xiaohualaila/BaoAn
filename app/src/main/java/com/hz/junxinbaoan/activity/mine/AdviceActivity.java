@@ -22,7 +22,7 @@ import net.qiujuer.genius.ui.widget.Button;
 
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,13 +35,13 @@ import retrofit2.http.POST;
  */
 
 public class AdviceActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.content_et)
+    @BindView(R.id.content_et)
     EditText content_et;
-    @InjectView(R.id.text_num_tv)
+    @BindView(R.id.text_num_tv)
     TextView text_num_tv;
-    @InjectView(R.id.commit_btn)
+    @BindView(R.id.commit_btn)
     Button commit_btn;
 
     @Override

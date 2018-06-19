@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -205,27 +205,27 @@ public class MessageAdapter extends BaseAdapter {
 
 
     class ViewHolder {
-        @InjectView(R.id.type)
+        @BindView(R.id.type)
         TextView type;
-        @InjectView(R.id.time)
+        @BindView(R.id.time)
         TextView time;
-        @InjectView(R.id.up_or_down)
+        @BindView(R.id.up_or_down)
         ImageView upOrDown;
-        @InjectView(R.id.linearLayout)
+        @BindView(R.id.linearLayout)
         LinearLayout linearLayout;
-        @InjectView(R.id.title)
+        @BindView(R.id.title)
         TextView title;
-        @InjectView(R.id.body)
+        @BindView(R.id.body)
         TextView body;
-        @InjectView(R.id.pic)
+        @BindView(R.id.pic)
         ImageViewPlus pic;
-        @InjectView(R.id.i_see)
+        @BindView(R.id.i_see)
         TextView iSee;
-        @InjectView(R.id.i_seebox)
+        @BindView(R.id.i_seebox)
         LinearLayout iSeebox;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

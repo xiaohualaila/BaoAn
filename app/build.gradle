@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.hz.junxinbaoan"
         minSdkVersion 15
@@ -83,62 +83,63 @@ android {
 }
 
 dependencies {
-    compile project(':gallerypick')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation project(':gallerypick')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'com.jaredrummler:android-processes:1.0.9'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'cn.finalteam:galleryfinal:1.4.8.7'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.squareup.sqlbrite:sqlbrite:0.6.3'
-    compile 'com.jakewharton:butterknife:6.0.0'
-    compile 'io.reactivex:rxjava:1.1.1'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.yancy.imageselector:imageselector:1.3.3'
+    implementation 'com.android.support:appcompat-v7:25.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
+    implementation 'com.jaredrummler:android-processes:1.0.9'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'cn.finalteam:galleryfinal:1.4.8.7'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    implementation 'com.squareup.sqlbrite:sqlbrite:0.6.3'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'io.reactivex:rxjava:1.1.1'
+    implementation 'io.reactivex:rxandroid:1.1.0'
+    implementation 'com.android.support:design:25.1.0'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    implementation 'com.yancy.imageselector:imageselector:1.3.3'
     //3D地图so及jar
-    compile 'com.amap.api:3dmap:latest.integration'
+    implementation 'com.amap.api:3dmap:latest.integration'
     //定位功能
-    compile 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
     //搜索功能
-    compile 'com.amap.api:search:latest.integration'
-    testCompile 'junit:junit:4.12'
-    compile 'com.czt.mp3recorder:library:1.0.4'
-    compile 'net.qiujuer.genius:ui:2.0.1'
-    compile 'net.qiujuer.genius:res:2.0.1'
-    compile 'net.qiujuer.genius:graphics:2.0.1'
-    compile 'net.qiujuer.genius:kit-cmd:2.0.1'
-    compile 'net.qiujuer.genius:kit-reflect:2.0.1'
-    compile 'net.qiujuer.genius:kit-handler:2.0.1'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.aliyun.ams:alicloud-android-man:1.1.6'
-    compile project(':calendarlibrary')
-    compile project(':ptr-lib')
+    implementation 'com.amap.api:search:latest.integration'
+    androidTestImplementation 'junit:junit:4.12'
+    implementation 'com.czt.mp3recorder:library:1.0.4'
+    implementation 'net.qiujuer.genius:ui:2.0.1'
+    implementation 'net.qiujuer.genius:res:2.0.1'
+    implementation 'net.qiujuer.genius:graphics:2.0.1'
+    implementation 'net.qiujuer.genius:kit-cmd:2.0.1'
+    implementation 'net.qiujuer.genius:kit-reflect:2.0.1'
+    implementation 'net.qiujuer.genius:kit-handler:2.0.1'
+    implementation 'com.android.support:design:25.1.0'
+    implementation 'com.aliyun.ams:alicloud-android-man:1.1.6'
+    implementation project(':calendarlibrary')
+    implementation project(':ptr-lib')
     //百度语音
-    compile files('libs/bdasr_V3_20170929_c8984af.jar')
+    implementation files('libs/bdasr_V3_20170929_c8984af.jar')
     //开源图表库
-    compile files('libs/hellocharts-library-1.5.8.jar')
-    compile 'me.weyye.hipermission:library:1.0.7'
-    compile 'com.android.support:multidex:1.0.0'
-    compile 'com.lovedise:permissiongen:0.0.6'
+    implementation files('libs/hellocharts-library-1.5.8.jar')
+    implementation 'me.weyye.hipermission:library:1.0.7'
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation 'com.lovedise:permissiongen:0.0.6'
     //错误日志收集
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
     //其中latest.release指代最新Bugly NDK版本号，也可以指定
 //    compile 'com.tencent.bugly:nativecrashreport:latest.release'
 
     //JPUSH
-    compile files('libs/jcore-android-1.1.9.jar')
-    compile files('libs/jpush-android-3.1.1.jar')
+    implementation files('libs/jcore-android-1.1.9.jar')
+    implementation files('libs/jpush-android-3.1.1.jar')
 
 //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
 //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'

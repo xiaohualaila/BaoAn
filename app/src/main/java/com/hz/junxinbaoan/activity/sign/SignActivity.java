@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * 考勤 签到
@@ -47,45 +47,45 @@ public class SignActivity extends BaseActivity implements NormalSignFragment.Cal
         .CallBackValue, TemSignFragment.CallBackValue {
     private static final String TAG = "SignActivity";
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.date_fl)
+    @BindView(R.id.date_fl)
     FrameLayout dateFl;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.iv_tab1)
+    @BindView(R.id.iv_tab1)
     ImageView ivTab1;
-    @InjectView(R.id.tv_tab1)
+    @BindView(R.id.tv_tab1)
     TextView tvTab1;
-    @InjectView(R.id.oval_tab1)
+    @BindView(R.id.oval_tab1)
     ImageView ovalTab1;
-    @InjectView(R.id.tab1_line)
+    @BindView(R.id.tab1_line)
     View tab1Line;
-    @InjectView(R.id.tab1)
+    @BindView(R.id.tab1)
     RelativeLayout tab1;
-    @InjectView(R.id.iv_tab2)
+    @BindView(R.id.iv_tab2)
     ImageView ivTab2;
-    @InjectView(R.id.tv_tab2)
+    @BindView(R.id.tv_tab2)
     TextView tvTab2;
-    @InjectView(R.id.oval_tab2)
+    @BindView(R.id.oval_tab2)
     ImageView ovalTab2;
-    @InjectView(R.id.tab2_line)
+    @BindView(R.id.tab2_line)
     View tab2Line;
-    @InjectView(R.id.tab2)
+    @BindView(R.id.tab2)
     RelativeLayout tab2;
-    @InjectView(R.id.iv_tab3)
+    @BindView(R.id.iv_tab3)
     ImageView ivTab3;
-    @InjectView(R.id.tv_tab3)
+    @BindView(R.id.tv_tab3)
     TextView tvTab3;
-    @InjectView(R.id.oval_tab3)
+    @BindView(R.id.oval_tab3)
     ImageView ovalTab3;
-    @InjectView(R.id.tab3_line)
+    @BindView(R.id.tab3_line)
     View tab3Line;
-    @InjectView(R.id.tab3)
+    @BindView(R.id.tab3)
     RelativeLayout tab3;
-    @InjectView(R.id.container_fl)
+    @BindView(R.id.container_fl)
     FrameLayout containerFl;
 
 
@@ -425,7 +425,7 @@ public class SignActivity extends BaseActivity implements NormalSignFragment.Cal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         // TODO: add setContentView(...) invocation
-        ButterKnife.inject( this );
+        ButterKnife.bind( this );
     }
 
     /**

@@ -7,11 +7,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.hz.junxinbaoan.activity.base.BaseActivity;
 import com.hz.junxinbaoan.adapter.TitleAdapter;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class SignInActivity extends BaseActivity {
 
-    @InjectView(R.id.my_title_view)
+    @BindView(R.id.my_title_view)
     RecyclerView myTitleView;
     TitleAdapter topadapter;
     @Override

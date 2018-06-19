@@ -3,6 +3,7 @@ package com.hz.junxinbaoan.activity.fragment;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,7 +59,8 @@ import retrofit2.http.POST;
  * Created by Administrator on 2018/2/9.
  */
 
-public class NormalSignFragment extends BaseFragment {
+public class NormalSignFragment extends BaseFragment implements SignAdapter.RefreshUIInterface,
+        SignAdapter.TakePhotoUIInterface {
     private static final String TAG = "NormalSignFragment";
     private static final int REQUEST_ORIGINAL = 1;
 
@@ -85,6 +87,63 @@ public class NormalSignFragment extends BaseFragment {
     private boolean uploadSign = false;  //是否已经签到上传
     private int takePhotoPosition;
     private String scheduleId;//排班id
+
+
+    @Override
+    public void refresh(boolean b) {
+        Log.e( TAG, signDetailList.toString() );
+//                Log.e( TAG, signDetailList.toString() + "refresh :" + photoType1Path.toString() );
+        if (b)
+            uploadSign = true;
+        else
+            uploadSign = false;
+        getDetail( uploadSign );//签到完成  刷新界面
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        mBaseActivity.showDialog( show );
+    }
+
+    @Override
+    public void takePhotos(String holder, int position) {
+        Uri uri;
+        takePhotoPosition = position;
+        Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
+//                String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
+//                        .getPackageName();
+//                tempFile = new File( temp, getPhotoFileName() );
+//                Log.e( TAG, "takePhotos: "+ tempFile  );
+//                // 判断版本大于等于7.0
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    // "com.hz.junxinbaoan.fileProvider"即是在清单文件中配置的authorities
+//                    uri = FileProvider.getUriForFile(mBaseActivity, "com.hz.junxinbaoan.fileProvider", tempFile);
+//                    // 给目标应用一个临时授权
+//                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                } else {
+//                    uri = Uri.fromFile(tempFile);
+//                }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果是7.0android系统
+            ContentValues contentValues = new ContentValues( 1 );
+            String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
+                    .getPackageName() + File.separator + "pic";
+            tempFile = new File( temp, getPhotoFileName() );
+            contentValues.put( MediaStore.Images.Media.DATA, tempFile.getAbsolutePath() );
+            uri = mBaseActivity.getContentResolver().insert( MediaStore.Images.Media
+                    .EXTERNAL_CONTENT_URI, contentValues );
+        } else {
+            String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
+                    .getPackageName() + File.separator + "pic";
+            tempFile = new File( temp, getPhotoFileName() );
+            uri = Uri.fromFile( tempFile );
+        }
+//                Log.e( TAG,takePhotoPosition + " , "+ holder + " -- tempFile:" + tempFile.toString() );
+        intent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
+        startActivityForResult( intent, REQUEST_ORIGINAL );
+        holderType = holder;
+
+    }
 
 
     //定义一个回调接口
@@ -156,64 +215,7 @@ public class NormalSignFragment extends BaseFragment {
         nowDate = curDate;
         Log.e( "TAG", "initViews : " + curDate.toString() + "--" + nowDate );
 
-        signAdapter = new SignAdapter( mBaseActivity, uploadSign, new SignAdapter.RefreshUIInterface() {
-            @Override
-            public void refresh(boolean b) {
-                Log.e( TAG, signDetailList.toString() );
-//                Log.e( TAG, signDetailList.toString() + "refresh :" + photoType1Path.toString() );
-                if (b)
-                    uploadSign = true;
-                else
-                    uploadSign = false;
-                getDetail( uploadSign );//签到完成  刷新界面
-            }
-
-            @Override
-            public void showLoading(boolean show) {
-                mBaseActivity.showDialog( show );
-            }
-        }, false, new SignAdapter.TakePhotoUIInterface() {
-            @Override
-            public void takePhotos(String holder, int position) {
-                Uri uri;
-                takePhotoPosition = position;
-                Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
-//                String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
-//                        .getPackageName();
-//                tempFile = new File( temp, getPhotoFileName() );
-//                Log.e( TAG, "takePhotos: "+ tempFile  );
-//                // 判断版本大于等于7.0
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    // "com.hz.junxinbaoan.fileProvider"即是在清单文件中配置的authorities
-//                    uri = FileProvider.getUriForFile(mBaseActivity, "com.hz.junxinbaoan.fileProvider", tempFile);
-//                    // 给目标应用一个临时授权
-//                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                } else {
-//                    uri = Uri.fromFile(tempFile);
-//                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果是7.0android系统
-                    ContentValues contentValues = new ContentValues( 1 );
-                    String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
-                            .getPackageName() + File.separator + "pic";
-                    tempFile = new File( temp, getPhotoFileName() );
-                    contentValues.put( MediaStore.Images.Media.DATA, tempFile.getAbsolutePath() );
-                    uri = mBaseActivity.getContentResolver().insert( MediaStore.Images.Media
-                            .EXTERNAL_CONTENT_URI, contentValues );
-                } else {
-                    String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
-                            .getPackageName() + File.separator + "pic";
-                    tempFile = new File( temp, getPhotoFileName() );
-                    uri = Uri.fromFile( tempFile );
-                }
-//                Log.e( TAG,takePhotoPosition + " , "+ holder + " -- tempFile:" + tempFile.toString() );
-                intent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
-                startActivityForResult( intent, REQUEST_ORIGINAL );
-                holderType = holder;
-
-
-            }
-        }, photoTyp1Map, photoTyp2Map );
+        signAdapter = new SignAdapter( mBaseActivity, uploadSign, this, false,this, photoTyp1Map, photoTyp2Map );
         RecyclerViewNoBugLinearLayoutManager linearLayoutManager = new RecyclerViewNoBugLinearLayoutManager(
                 mBaseActivity );
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( mBaseActivity );

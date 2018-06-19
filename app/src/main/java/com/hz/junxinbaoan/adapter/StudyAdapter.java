@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -165,15 +165,15 @@ public class StudyAdapter extends BaseAdapter {
 
 
     class ViewHolder {
-        @InjectView(R.id.pic)
+        @BindView(R.id.pic)
         ImageViewPlus pic;
-        @InjectView(R.id.title)
+        @BindView(R.id.title)
         TextView title;
-        @InjectView(R.id.body)
+        @BindView(R.id.body)
         TextView body;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

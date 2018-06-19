@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,12 +40,12 @@ import retrofit2.http.POST;
 public class PeoPleMap extends BaseActivity {
     private static final String TAG = "PeoPleMap";
     AMap aMap;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
 
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
 
     private MapView mapView;

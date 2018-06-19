@@ -22,7 +22,7 @@ import com.hz.junxinbaoan.view.AnimPtrFrameLayout;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -38,13 +38,13 @@ import retrofit2.http.POST;
  */
 
 public class HelpListActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.date_fl)
+    @BindView(R.id.date_fl)
     FrameLayout date_fl;
-    @InjectView(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerview;
-    @InjectView(R.id.ptrframlayout)
+    @BindView(R.id.ptrframlayout)
     AnimPtrFrameLayout ptrframlayout;
 
     private HelpListRVAdapter adapter;

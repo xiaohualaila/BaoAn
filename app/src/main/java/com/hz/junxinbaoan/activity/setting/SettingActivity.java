@@ -15,19 +15,19 @@ import com.hz.junxinbaoan.utils.MyToast;
 import java.io.File;
 import java.math.BigDecimal;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class SettingActivity extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.clear)
+    @BindView(R.id.clear)
     RelativeLayout clear;
-    @InjectView(R.id.howbig)
+    @BindView(R.id.howbig)
     TextView howbig;
 
     @Override

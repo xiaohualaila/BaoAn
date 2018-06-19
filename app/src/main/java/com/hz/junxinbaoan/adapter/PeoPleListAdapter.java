@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by linzp on 2017/10/25.
@@ -109,18 +109,18 @@ public class PeoPleListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.type)
+        @BindView(R.id.type)
         TextView type;
-        @InjectView(R.id.pic)
+        @BindView(R.id.pic)
         ImageViewPlus pic;
-        @InjectView(R.id.name)
+        @BindView(R.id.name)
         TextView name;
-        @InjectView(R.id.guan)
+        @BindView(R.id.guan)
         TextView guan;
-        @InjectView(R.id.firstname)
+        @BindView(R.id.firstname)
         TextView firstname;
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

@@ -150,7 +150,7 @@ public class BaseActivity extends FragmentActivity {
     }
 
     protected void initButterKnife() {
-        ButterKnife.inject( mBaseActivity );
+        ButterKnife.bind( mBaseActivity );
     }
 
 

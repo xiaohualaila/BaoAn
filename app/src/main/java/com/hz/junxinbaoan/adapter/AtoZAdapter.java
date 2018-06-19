@@ -13,7 +13,7 @@ import com.hz.junxinbaoan.R;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by linzp on 2017/10/25.
@@ -63,11 +63,11 @@ public class AtoZAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.item)
+        @BindView(R.id.item)
         TextView item;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
     public interface Touch{

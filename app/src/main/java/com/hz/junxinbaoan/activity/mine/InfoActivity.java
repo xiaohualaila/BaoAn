@@ -29,7 +29,7 @@ import java.io.File;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,64 +42,64 @@ import retrofit2.http.POST;
  */
 
 public class InfoActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.code_iv)
+    @BindView(R.id.code_iv)
     ImageView code_iv;
-    @InjectView(R.id.ava_iv)
+    @BindView(R.id.ava_iv)
     ImageViewPlus ava_iv;
-    @InjectView(R.id.name_tv)
+    @BindView(R.id.name_tv)
     TextView name_tv;
-    @InjectView(R.id.sex_tv)
+    @BindView(R.id.sex_tv)
     TextView sex_tv;
-    @InjectView(R.id.birthday_tv)
+    @BindView(R.id.birthday_tv)
     TextView birthday_tv;
-    @InjectView(R.id.num_tv)
+    @BindView(R.id.num_tv)
     TextView num_tv;
-    @InjectView(R.id.add_tv)
+    @BindView(R.id.add_tv)
     TextView add_tv;
-    @InjectView(R.id.id_tv)
+    @BindView(R.id.id_tv)
     TextView id_tv;
-    @InjectView(R.id.phone_tv)
+    @BindView(R.id.phone_tv)
     TextView phone_tv;
-    @InjectView(R.id.company_tv)
+    @BindView(R.id.company_tv)
     TextView company_tv;
-    @InjectView(R.id.liveadd_tv)
+    @BindView(R.id.liveadd_tv)
     TextView liveadd_tv;
 
     CodeDialog codeDialog;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.list_fl)
+    @BindView(R.id.list_fl)
     FrameLayout listFl;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.info_text)
+    @BindView(R.id.info_text)
     TextView infoText;
-    @InjectView(R.id.name_text)
+    @BindView(R.id.name_text)
     TextView nameText;
-    @InjectView(R.id.sex_text)
+    @BindView(R.id.sex_text)
     TextView sexText;
-    @InjectView(R.id.birthday_text)
+    @BindView(R.id.birthday_text)
     TextView birthdayText;
-    @InjectView(R.id.num_text)
+    @BindView(R.id.num_text)
     TextView numText;
-    @InjectView(R.id.add_text)
+    @BindView(R.id.add_text)
     TextView addText;
-    @InjectView(R.id.phone_text)
+    @BindView(R.id.phone_text)
     TextView phoneText;
-    @InjectView(R.id.line1)
+    @BindView(R.id.line1)
     View line1;
-    @InjectView(R.id.company_text)
+    @BindView(R.id.company_text)
     TextView companyText;
-    @InjectView(R.id.line2)
+    @BindView(R.id.line2)
     View line2;
-    @InjectView(R.id.liveadd_text)
+    @BindView(R.id.liveadd_text)
     TextView liveaddText;
-    @InjectView(R.id.line3)
+    @BindView(R.id.line3)
     View line3;
 
-    @InjectView(R.id.firstname)
+    @BindView(R.id.firstname)
     TextView firstname;
 
     @Override

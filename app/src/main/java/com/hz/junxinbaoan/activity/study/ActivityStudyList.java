@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -40,18 +40,18 @@ import retrofit2.http.POST;
 
 public class ActivityStudyList extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.date_fl)
+    @BindView(R.id.date_fl)
     FrameLayout share;//分享
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.approval_list)
+    @BindView(R.id.approval_list)
     ListView studyList;
     List<StudyResult.DataBean> list = new ArrayList<>();
-    @InjectView(R.id.ptrframlayout)
+    @BindView(R.id.ptrframlayout)
     AnimPtrFrameLayout ptr;
     private StudyAdapter adapter;
     int page = 1;

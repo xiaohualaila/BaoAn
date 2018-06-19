@@ -33,7 +33,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,35 +42,35 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public class ActivityApprovalCommit extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.list_fl)
+    @BindView(R.id.list_fl)
     FrameLayout listFl;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.type_tv)
+    @BindView(R.id.type_tv)
     TextView typeTv;
-    @InjectView(R.id.type_et)
+    @BindView(R.id.type_et)
     TextView typeEt;
-    @InjectView(R.id.start_tv)
+    @BindView(R.id.start_tv)
     TextView startTv;
-    @InjectView(R.id.start_et)
+    @BindView(R.id.start_et)
     TextView startEt;
-    @InjectView(R.id.end_tv)
+    @BindView(R.id.end_tv)
     TextView endTv;
-    @InjectView(R.id.end_et)
+    @BindView(R.id.end_et)
     TextView endEt;
-    @InjectView(R.id.days_tv)
+    @BindView(R.id.days_tv)
     TextView daysTv;
-    @InjectView(R.id.days_et)
+    @BindView(R.id.days_et)
     EditText daysEt;
-    @InjectView(R.id.reason_tv)
+    @BindView(R.id.reason_tv)
     TextView reasonTv;
-    @InjectView(R.id.reason_et)
+    @BindView(R.id.reason_et)
     EditText reasonEt;
-    @InjectView(R.id.commit_btn)
+    @BindView(R.id.commit_btn)
     Button commit_btn;
 
     private ChooseDateDialog dialog_start;

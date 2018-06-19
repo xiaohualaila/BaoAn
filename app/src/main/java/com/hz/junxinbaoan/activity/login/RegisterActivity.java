@@ -25,7 +25,7 @@ import com.hz.junxinbaoan.utils.ResultHandler;
 
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,41 +35,41 @@ import retrofit2.http.POST;
 
 public class RegisterActivity extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.icon_mine)
+    @BindView(R.id.icon_mine)
     ImageView iconMine;
-    @InjectView(R.id.name)
+    @BindView(R.id.name)
     EditText name;
-    @InjectView(R.id.icon_idcard)
+    @BindView(R.id.icon_idcard)
     ImageView iconIdcard;
-    @InjectView(R.id.idcard)
+    @BindView(R.id.idcard)
     EditText idcard;
-    @InjectView(R.id.icon_phone)
+    @BindView(R.id.icon_phone)
     ImageView iconPhone;
-    @InjectView(R.id.phone)
+    @BindView(R.id.phone)
     EditText phone;
-    @InjectView(R.id.icon_checkcode)
+    @BindView(R.id.icon_checkcode)
     ImageView iconCheckcode;
-    @InjectView(R.id.checkcode)
+    @BindView(R.id.checkcode)
     EditText checkcode;
-    @InjectView(R.id.sendCheckcode)
+    @BindView(R.id.sendCheckcode)
     TextView sendCheckcode;
-    @InjectView(R.id.icon_password)
+    @BindView(R.id.icon_password)
     ImageView iconPassword;
-    @InjectView(R.id.password)
+    @BindView(R.id.password)
     EditText password;
-    @InjectView(R.id.seePassword)
+    @BindView(R.id.seePassword)
     FrameLayout seePassword;
-    @InjectView(R.id.login)
+    @BindView(R.id.login)
     TextView login;
-//    @InjectView(R.id.forget)
+//    @BindView(R.id.forget)
 //    TextView forget;
-    @InjectView(R.id.to_register)
+    @BindView(R.id.to_register)
     TextView toRegister;
 
     private TimeCount myTimeCount = new TimeCount(60000, 1000);

@@ -18,16 +18,16 @@ import com.hz.junxinbaoan.common.Constants;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by Administrator on 2017/11/13 0013.
  */
 
 public class HelpWebActivity extends BaseActivity{
-    @InjectView(R.id.webview)
+    @BindView(R.id.webview)
     WebView webView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
 
     @Override

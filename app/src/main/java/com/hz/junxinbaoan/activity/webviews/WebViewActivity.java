@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,22 +39,22 @@ import retrofit2.http.POST;
 
 public class WebViewActivity extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.webview)
+    @BindView(R.id.webview)
     WebView webview;
-    @InjectView(R.id.dTitle_tv)
+    @BindView(R.id.dTitle_tv)
     TextView dTitle_tv;
-    @InjectView(R.id.time_tv)
+    @BindView(R.id.time_tv)
     TextView time_tv;
-    @InjectView(R.id.name_tv)
+    @BindView(R.id.name_tv)
     TextView name_tv;
     private String company;
-    @InjectView(R.id.ava_iv)
+    @BindView(R.id.ava_iv)
     ImageViewPlus ava_iv;
     String id = "";
     String title = "";

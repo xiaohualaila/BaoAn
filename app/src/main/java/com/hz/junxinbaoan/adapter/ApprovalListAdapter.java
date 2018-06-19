@@ -16,7 +16,7 @@ import com.hz.junxinbaoan.utils.CommonUtils;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by linzp on 2017/10/24.
@@ -98,21 +98,21 @@ public class ApprovalListAdapter extends BaseAdapter {
 
 
     class ViewHolder {
-        @InjectView(R.id.type)
+        @BindView(R.id.type)
         TextView type;
-        @InjectView(R.id.time)
+        @BindView(R.id.time)
         TextView time;
-        @InjectView(R.id.linearLayout)
+        @BindView(R.id.linearLayout)
         LinearLayout linearLayout;
-        @InjectView(R.id.title)
+        @BindView(R.id.title)
         TextView title;
-        @InjectView(R.id.body)
+        @BindView(R.id.body)
         TextView body;
-        @InjectView(R.id.i_see)
+        @BindView(R.id.i_see)
         TextView iSee;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

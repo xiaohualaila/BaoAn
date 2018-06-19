@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,28 +64,28 @@ import retrofit2.http.POST;
 
 public class HelpDetailActivity extends BaseActivity implements LocationSource,
         AMapLocationListener, AMap.OnCameraChangeListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.map)
+    @BindView(R.id.map)
     TextureMapView mapView;
-    @InjectView(R.id.myLayout)
+    @BindView(R.id.myLayout)
     MyLayout myLayout;
-    @InjectView(R.id.scrollView)
+    @BindView(R.id.scrollView)
     ScrollView scrollView;
-    @InjectView(R.id.photo_rv)
+    @BindView(R.id.photo_rv)
     RecyclerView photo_rv;
-    @InjectView(R.id.record_play)
+    @BindView(R.id.record_play)
     Button record_play;
-    @InjectView(R.id.name_tv)
+    @BindView(R.id.name_tv)
     TextView name_tv;
-    @InjectView(R.id.time_tv)
+    @BindView(R.id.time_tv)
     TextView time_tv;
-    @InjectView(R.id.content_tv)
+    @BindView(R.id.content_tv)
     TextView content_tv;
-    @InjectView(R.id.address_tv)
+    @BindView(R.id.address_tv)
     TextView address_tv;
 
-    @InjectView(R.id.howlong)
+    @BindView(R.id.howlong)
     TextView howlong;
 
     private final String TAG = "HelpDetailActivity";

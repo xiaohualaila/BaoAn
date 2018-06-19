@@ -29,8 +29,8 @@ import net.qiujuer.genius.ui.widget.Button;
 
 import java.util.Map;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -205,19 +205,19 @@ public class SquareAdapter extends BaseAdapter {
 
 
     class ViewHolder {
-        @InjectView(R.id.icon)
+        @BindView(R.id.icon)
         ImageView icon;
-        @InjectView(R.id.title)
+        @BindView(R.id.title)
         TextView title;
-        @InjectView(R.id.body)
+        @BindView(R.id.body)
         TextView body;
-        @InjectView(R.id.box)
+        @BindView(R.id.box)
         RelativeLayout box;
-        @InjectView(R.id.box_btn)
+        @BindView(R.id.box_btn)
         Button box_btn;
 
         ViewHolder(View view) {
-            ButterKnife.inject( this, view );
+            ButterKnife.bind( this, view );
         }
     }
 }

@@ -52,7 +52,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
@@ -81,54 +81,54 @@ import rx.subscriptions.CompositeSubscription;
 
 public class ChangeMineInfo extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     FrameLayout back;
-    @InjectView(R.id.title_name)
+    @BindView(R.id.title_name)
     TextView titleName;
-    @InjectView(R.id.title_lay)
+    @BindView(R.id.title_lay)
     RelativeLayout titleLay;
-    @InjectView(R.id.pic_head_icon)
+    @BindView(R.id.pic_head_icon)
     ImageView picHeadIcon;
-    @InjectView(R.id.pic_head)
+    @BindView(R.id.pic_head)
     ImageView picHead;
-    @InjectView(R.id.change_pic)
+    @BindView(R.id.change_pic)
     ImageView changePic;
-    @InjectView(R.id.mine_icon)
+    @BindView(R.id.mine_icon)
     ImageView mineIcon;
-    @InjectView(R.id.mine_et)
+    @BindView(R.id.mine_et)
     EditText mineEt;
-    @InjectView(R.id.id_icon)
+    @BindView(R.id.id_icon)
     ImageView idIcon;
-    @InjectView(R.id.id_et)
+    @BindView(R.id.id_et)
     EditText idEt;
-    @InjectView(R.id.workid_icon)
+    @BindView(R.id.workid_icon)
     ImageView workidIcon;
-    @InjectView(R.id.workid_et)
+    @BindView(R.id.workid_et)
     EditText workidEt;
-    @InjectView(R.id.oldhome_icon)
+    @BindView(R.id.oldhome_icon)
     ImageView oldhomeIcon;
-    @InjectView(R.id.oldhome_et)
+    @BindView(R.id.oldhome_et)
     EditText oldhomeEt;
-    @InjectView(R.id.home_icon)
+    @BindView(R.id.home_icon)
     ImageView homeIcon;
-    @InjectView(R.id.home_et)
+    @BindView(R.id.home_et)
     EditText homeEt;
-    @InjectView(R.id.phone_icon)
+    @BindView(R.id.phone_icon)
     ImageView phoneIcon;
-    @InjectView(R.id.phone_et)
+    @BindView(R.id.phone_et)
     EditText phoneEt;
-    @InjectView(R.id.vcode_icon)
+    @BindView(R.id.vcode_icon)
     ImageView vcodeIcon;
-    @InjectView(R.id.vcode_et)
+    @BindView(R.id.vcode_et)
     EditText vcodeEt;
-    @InjectView(R.id.view)
+    @BindView(R.id.view)
     View view;
-    @InjectView(R.id.sendCheckcode)
+    @BindView(R.id.sendCheckcode)
     TextView sendCheckcode;
-    @InjectView(R.id.commit_btn)
+    @BindView(R.id.commit_btn)
     Button commitBtn;
 
-    @InjectView(R.id.firstname)
+    @BindView(R.id.firstname)
     TextView firstname;
     //图片相关
     private ArrayList<String> path = new ArrayList<>();
