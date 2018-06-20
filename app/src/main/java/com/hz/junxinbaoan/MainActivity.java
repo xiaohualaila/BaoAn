@@ -10,10 +10,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -88,26 +91,6 @@ public class MainActivity extends BaseActivity {
     ImageView iconVoice;
     @BindView(R.id.box_search)
     FrameLayout boxSearch;
-    @BindView(R.id.tab1_work)
-    TextView tab1Work;
-    @BindView(R.id.tab1_line)
-    View tab1Line;
-    @BindView(R.id.tab1)
-    LinearLayout tab1;
-    @BindView(R.id.tab2_message)
-    TextView tab2Message;
-    @BindView(R.id.tab2_line)
-    View tab2Line;
-    @BindView(R.id.tab2)
-    LinearLayout tab2;
-    @BindView(R.id.tab3_list)
-    TextView tab3List;
-    @BindView(R.id.tab3_line)
-    View tab3Line;
-    @BindView(R.id.tab3)
-    LinearLayout tab3;
-    @BindView(R.id.container_fl)
-    FrameLayout containerFl;
     @BindView(R.id.name_phone)
     TextView namePhone;
     @BindView(R.id.my_message)
@@ -134,7 +117,10 @@ public class MainActivity extends BaseActivity {
     TextView out;
     @BindView(R.id.firstname)
     TextView firstname;
-
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+    @BindView(R.id.view_pager)
+    ViewPager view_pager;
     RecordDialog recordDialog;
     EventManager asr;
     Intent startIntent;
@@ -143,6 +129,7 @@ public class MainActivity extends BaseActivity {
     private FragmentManager mFragmentManager;
     //fragment列表
     private List<Fragment> mFragmentList = new ArrayList<>();
+    private List<String> tabs = new ArrayList<>();
     //选择的fragment
     private int mSelected = 0;
     //是否因意外销毁而重建
@@ -170,8 +157,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void isDis() {
-//                iconVoice.setEnabled(false);//不让再按
-//                        new MyCountDownTimer(1500, 500).start();
                 asr.send( SpeechConstant.ASR_STOP, null, null, 0, 0 ); // 发送停止录音事件，提前结束录音等待识别结果
                 Log.i( "BaiDuYuYin", "语音识别完成" );
             }
@@ -179,7 +164,6 @@ public class MainActivity extends BaseActivity {
 
 
         Log.i( "sha1", CommonUtils.sHA1( mBaseActivity ) );
-//        getTime();
         startIntent = new Intent( getApplicationContext(), MyService.class );
         startService( startIntent );
 
@@ -190,34 +174,7 @@ public class MainActivity extends BaseActivity {
                 .findFragmentByTag( "list" ) != null) );
         if (savedInstanceState != null) {
             mSavedInstance = savedInstanceState;
-//            if (mFragmentManager.findFragmentByTag( "work" ) != null)
-//                mFragmentList.add( mFragmentManager.findFragmentByTag( "home" ) );
-                mFragmentList.add( mFragmentManager.findFragmentByTag( "work" ) );
-//            else
-//                mFragmentList.add( new WorkFragment() );
-//
-//            if (mFragmentManager.findFragmentByTag( "message" ) != null)
-//                mFragmentList.add( mFragmentManager.findFragmentByTag( "order" ) );
-                mFragmentList.add( mFragmentManager.findFragmentByTag( "message" ) );
-//            else
-//                mFragmentList.add( new MessageFragment() );
-//
-//            if (mFragmentManager.findFragmentByTag( "list" ) != null)
-//                mFragmentList.add( mFragmentManager.findFragmentByTag( "mine" ) );
-                mFragmentList.add( mFragmentManager.findFragmentByTag( "list" ) );
-//            else
-//                mFragmentList.add( new ListFragment() );
-//
-//            mSelected = savedInstanceState.getInt( "selected" );
-//            Log.e( TAG, "mSelected: " + mSelected );
-        } else {
-            mFragmentList.add( new WorkFragment() );
-            mFragmentList.add( new MessageFragment() );
-            mFragmentList.add( new ListFragment() );
-//            mFragmentManager.beginTransaction()
-//                    .add(R.id.container_fl, mFragmentList.get(1), "order")
-//                    .add(R.id.container_fl, mFragmentList.get(2), "mine")
-//                    .commit();
+            Log.e( TAG,mSelected+"" );
         }
     }
 
@@ -244,53 +201,7 @@ public class MainActivity extends BaseActivity {
                 startActivityForResult( new Intent( mBaseActivity, InfoActivity.class ), 100 );
             }
         } );
-        tab1.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e( TAG, mSelected + "; " + mFragmentList.get( 0 ).isAdded() + " 0 ," + mFragmentList.get( 1 )
-                        .isAdded()
-                        + " 1 , " + " , 2 " + mFragmentList.get( 2 ).isAdded() );
-                if (mFragmentList.get( 0 ).isAdded())
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).show( mFragmentList
-                            .get( 0 ) ).commit();
-                else
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).add( R.id
-                            .container_fl, mFragmentList.get( 0 ), "work" ).commit();
-                mSelected = 0;
-                changeTab( 1 );
-            }
-        } );
-        tab2.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e( TAG, mSelected + "; " + mFragmentList.get( 1 ).isAdded() + " 1 ," + mFragmentList.get( 0 )
-                        .isAdded() + " 0 , " + " , 2 " + mFragmentList.get( 2 ).isAdded() );
-                if (mFragmentList.get( 1 ).isAdded())
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).show( mFragmentList
-                            .get( 1 ) ).commit();
-                else
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).add( R.id
-                            .container_fl, mFragmentList.get( 1 ), "message" ).commit();
 
-                mSelected = 1;
-                changeTab( 2 );
-            }
-        } );
-        tab3.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e( TAG, mSelected + "; " + mFragmentList.get( 2 ).isAdded() + " 2 ," + mFragmentList.get( 1 )
-                        .isAdded() + " 1 , " + " , 0 " + mFragmentList.get( 0 ).isAdded() );
-                if (mFragmentList.get( 2 ).isAdded())
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).show( mFragmentList
-                            .get( 2 ) ).commit();
-                else
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( mSelected ) ).add( R.id
-                            .container_fl, mFragmentList.get( 2 ), "list" ).commit();
-                mSelected = 2;
-                changeTab( 3 );
-            }
-        } );
         back.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -367,6 +278,7 @@ public class MainActivity extends BaseActivity {
                         .checkMutiPermission( new PermissionCallback() {
                             @Override
                             public void onClose() {
+                                MyToast.showToast( mBaseActivity, "拒绝使用权限可能导致应用无法正常使用！" );
                             }
 
                             @Override
@@ -402,63 +314,65 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
         super.initViews();
+        tabs.add("工作");
+        tabs.add("消息");
+        tabs.add("通讯录");
+        mFragmentList.add( new WorkFragment() );
+        mFragmentList.add( new MessageFragment() );
+        mFragmentList.add( new ListFragment() );
 
-        Log.e( TAG, "--initViews  " + mSavedInstance );
-        if (mSavedInstance == null) {
-            Log.e( TAG, "--initViews  " + "111" );
-            mFragmentManager.beginTransaction()
-                    .add( R.id.container_fl, mFragmentList.get( 0 ), "work" )
-                    .add( R.id.container_fl, mFragmentList.get( 1 ), "message" ).hide( mFragmentList.get( 1 ) )
-                    .add( R.id.container_fl, mFragmentList.get( 2 ), "list" ).hide( mFragmentList.get( 2 ) )
-                    .commit();
-//            mFragmentManager.beginTransaction().add(R.id.container_fl, mFragmentList.get(0), "home").commit();
-        } else {
-            Log.e( TAG, "--initViews  " + "222 ,, " + mFragmentList.size() );
-            for (int i = 0; i < mFragmentList.size(); i++) {
-                Log.e( TAG, mFragmentList.get( i ) + "," + mFragmentList.get( i ).isAdded() + "; " + mSelected );
-                if (mFragmentList.get( i ) != null && mFragmentList.get( i ).isAdded() && i != mSelected)
-                    mFragmentManager.beginTransaction().hide( mFragmentList.get( i ) ).commit();
+        //设置TabLayout的模式
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        view_pager.setAdapter(new TabAdapter(getSupportFragmentManager()));
+        //关联ViewPager和TabLayout
+        tabLayout.setupWithViewPager(view_pager);
+        view_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
-        }
-        tab1.setSelected( true );
-        tab2.setSelected( false );
-        tab3.setSelected( false );
-        changeTab( 1 );
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==2){
+                    boxSearch.setVisibility(View.VISIBLE);
+                    titleLay.setVisibility(View.GONE);
+                }else {
+                    boxSearch.setVisibility(View.GONE);
+                    titleLay.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        LinearLayout linearLayout = (LinearLayout) tabLayout.getChildAt(0);
+        linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
     }
 
-    private void changeTab(int i) {
-        //改变上面的按钮显示效果
-        if (i == 1) {
-            tab1Line.setVisibility( View.VISIBLE );
-            tab2Line.setVisibility( View.INVISIBLE );
-            tab3Line.setVisibility( View.INVISIBLE );
-            tab1Work.setTextColor( getResources().getColor( R.color.white ) );
-            tab2Message.setTextColor( getResources().getColor( R.color.text_gray ) );
-            tab3List.setTextColor( getResources().getColor( R.color.text_gray ) );
-            boxSearch.setVisibility( View.GONE );
-            titleLay.setVisibility( View.VISIBLE );
-        }
-        if (i == 2) {
-            tab2Line.setVisibility( View.VISIBLE );
-            tab1Line.setVisibility( View.INVISIBLE );
-            tab3Line.setVisibility( View.INVISIBLE );
-            tab2Message.setTextColor( getResources().getColor( R.color.white ) );
-            tab1Work.setTextColor( getResources().getColor( R.color.text_gray ) );
-            tab3List.setTextColor( getResources().getColor( R.color.text_gray ) );
-            boxSearch.setVisibility( View.GONE );
-            titleLay.setVisibility( View.VISIBLE );
-        }
-        if (i == 3) {
-            tab3Line.setVisibility( View.VISIBLE );
-            tab2Line.setVisibility( View.INVISIBLE );
-            tab1Line.setVisibility( View.INVISIBLE );
-            tab3List.setTextColor( getResources().getColor( R.color.white ) );
-            tab2Message.setTextColor( getResources().getColor( R.color.text_gray ) );
-            tab1Work.setTextColor( getResources().getColor( R.color.text_gray ) );
-            boxSearch.setVisibility( View.VISIBLE );
-            titleLay.setVisibility( View.GONE );
+
+    class TabAdapter extends FragmentPagerAdapter {
+        public TabAdapter(FragmentManager fm) {
+            super(fm);
         }
 
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        //显示标签上的文字
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabs.get(position);
+        }
     }
 
     @Override
@@ -471,10 +385,9 @@ public class MainActivity extends BaseActivity {
         }
 
         getUserInfo();
-//        initPermission();
         Log.e( TAG, "--onResume" + getIntent().getStringExtra( "type" ) );
         if (getIntent().getStringExtra( "type" ) != null && getIntent().getStringExtra( "type" ).equals( "message" )) {
-            tab2.performClick();
+            view_pager.setCurrentItem(1);
         }
     }
 
@@ -592,15 +505,6 @@ public class MainActivity extends BaseActivity {
             }
             return;
         }
-
-//        long timeInMillis = Calendar.getInstance().getTimeInMillis();
-//        if (timeInMillis - mExitTime > 2000) {
-//            MyToast.showToast( mBaseActivity, "再按一次退出程序" );
-//            mExitTime = timeInMillis;
-//        } else {
-//            MyApplication.getInstance().finish();
-//        }
-//        return;
     }
 
     String yesName;
@@ -643,33 +547,9 @@ public class MainActivity extends BaseActivity {
     };
 
 
-    /**
-     * android 6.0 以上需要动态申请权限
-     */
-    private void initPermission() {
-        String permissions[] = {Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.INTERNET,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        ArrayList<String> toApplyList = new ArrayList<String>();
-        for (String perm : permissions) {
-            if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission( this, perm )) {
-                toApplyList.add( perm );
-                //进入到这里代表没有权限.
-            }
-        }
-        String tmpList[] = new String[toApplyList.size()];
-        if (!toApplyList.isEmpty()) {
-            ActivityCompat.requestPermissions( mBaseActivity, toApplyList.toArray( tmpList ), 123 );
-        }
-    }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] paramArrayOfInt) {
-//        super.onRequestPermissionsResult( requestCode, permissions, paramArrayOfInt );
-//    }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

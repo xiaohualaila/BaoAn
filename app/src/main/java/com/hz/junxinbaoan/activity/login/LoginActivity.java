@@ -1,14 +1,10 @@
 package com.hz.junxinbaoan.activity.login;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +29,7 @@ import com.hz.junxinbaoan.R;
 import com.hz.junxinbaoan.activity.base.BaseActivity;
 import com.hz.junxinbaoan.activity.dialog.Apk_dialog;
 import com.hz.junxinbaoan.activity.dialog.LoadingDialog;
-import com.hz.junxinbaoan.api.BaseApi;
+import com.hz.junxinbaoan.common.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.params.BaseParam;
 import com.hz.junxinbaoan.params.LoginParam;
@@ -49,14 +45,9 @@ import com.hz.junxinbaoan.utils.ResultHandler;
 
 import net.qiujuer.genius.ui.widget.Button;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import butterknife.BindView;
 import butterknife.BindView;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
@@ -394,7 +385,7 @@ public class LoginActivity extends BaseActivity implements DownApk.ProgressState
         BaseApi getData = CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
                 BaseApi.class );
         BaseParam param = new BaseParam();
-        Call<CodeResult> call = getData.getData( CommonUtils.getPostMap( param ) );
+        Call<CodeResult> call = getData.getVCode( CommonUtils.getPostMap( param ) );
         call.enqueue( new Callback<CodeResult>() {
             @Override
             public void onResponse(final Call<CodeResult> call, final Response<CodeResult> response) {

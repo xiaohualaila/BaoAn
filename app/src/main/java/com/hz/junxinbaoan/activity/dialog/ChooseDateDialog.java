@@ -92,6 +92,7 @@ public class ChooseDateDialog extends BaseDialog {
                 ImageView bg = (ImageView) convertView.findViewById(R.id.bg);
 
                 text.setText("" + bean.day);
+                chinaText.setVisibility(View.GONE);
                 //mothFlag 0是当月，-1是月前，1是月后
                 if (bean.mothFlag != 0) {
 //                    background.setVisibility(View.GONE);

@@ -11,7 +11,7 @@ import com.hz.junxinbaoan.MainActivity;
 import com.hz.junxinbaoan.MyApplication;
 import com.hz.junxinbaoan.R;
 import com.hz.junxinbaoan.activity.base.BaseActivity;
-import com.hz.junxinbaoan.api.BaseApi;
+import com.hz.junxinbaoan.common.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.params.BaseParam;
 import com.hz.junxinbaoan.params.LoginParam;
@@ -24,7 +24,6 @@ import com.hz.junxinbaoan.utils.MyToast;
 import com.hz.junxinbaoan.utils.ResultHandler;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
@@ -114,13 +113,6 @@ public class WelcomeActivity extends BaseActivity {
         }
     };
 
-//    //获取个人信息接口
-//    private interface GetData2 {
-//        @FormUrlEncoded
-//        @POST(Constants.GETUSERINFO)
-//        Call<UserInfoResult> getData(@FieldMap Map<String, Object> map);
-//    }
-
     //获取个人信息
     private void getUserInfo(final String token) {
         showDialog( true );
@@ -163,7 +155,7 @@ public class WelcomeActivity extends BaseActivity {
         BaseApi getData =  CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
                 BaseApi.class );
         BaseParam param = new BaseParam();
-        Call<CodeResult> call = getData.getData( CommonUtils.getPostMap( param ) );
+        Call<CodeResult> call = getData.getVCode( CommonUtils.getPostMap( param ) );
         call.enqueue( new Callback<CodeResult>() {
             @Override
             public void onResponse(final Call<CodeResult> call, final Response<CodeResult> response) {

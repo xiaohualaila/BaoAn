@@ -1,4 +1,4 @@
-package com.hz.junxinbaoan.api;
+package com.hz.junxinbaoan.common;
 
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.result.CodeResult;
@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 public interface BaseApi {
     @FormUrlEncoded
     @POST(Constants.VCODE)
-    Call<CodeResult> getData(@FieldMap Map<String, Object> map);
+    Call<CodeResult> getVCode(@FieldMap Map<String, Object> map);
 
     @FormUrlEncoded
     @POST(Constants.GETUSERINFO)

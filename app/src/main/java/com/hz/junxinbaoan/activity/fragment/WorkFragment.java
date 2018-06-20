@@ -126,29 +126,7 @@ public class WorkFragment extends BaseFragment {
                             "" );
             }
         } );
-//        square_x4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                switch (position){
-//                    case 0://求助爆料
-//                        Intent intent=new Intent(getActivity(), HelpCommitActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                    case 1://我的排班
-//                        startActivity(new Intent(getActivity(), SchedulingActivity.class));
-//                        break;
-//                    case 2://审批
-//                        Intent intent3=new Intent(getActivity(), ActivityApprovalCommit.class);
-//                        startActivity(intent3);
-//                        break;
-//                    case 3://学习中心
-//                        Intent intent4=new Intent(getActivity(), ActivityStudyList.class);
-//                        startActivity(intent4);
-//                        break;
-//
-//                }
-//            }
-//        });
+
 
         ptr.setPtrHandler( new PtrHandler() {
             @Override
