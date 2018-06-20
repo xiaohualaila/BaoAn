@@ -19,6 +19,7 @@ import com.hz.junxinbaoan.activity.base.BaseFragment;
 import com.hz.junxinbaoan.activity.sign.SignActivity;
 import com.hz.junxinbaoan.adapter.SquareAdapter;
 import com.hz.junxinbaoan.adapter.WorkTimeAdapter;
+import com.hz.junxinbaoan.common.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.data.SignTopBean;
 import com.hz.junxinbaoan.data.SquareBean;
@@ -107,23 +108,19 @@ public class WorkFragment extends BaseFragment {
         getRole();//获取权限
         getSquareData();
         getTop();
-//        push();
     }
 
     @Override
     protected void addListeners() {
         super.addListeners();
-
         //考勤 签到
-
         sign_box_btn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (null != roleData && null != roleData.getIsAppAttendance() && 1 == roleData.getIsAppAttendance())
                     startActivity( new Intent( getContext(), SignActivity.class ) );
                 else
-                    MyToast.showToast( mBaseActivity, getResources().getText( R.string.noRolePermission ) +
-                            "" );
+                    MyToast.showToast( mBaseActivity, getResources().getText( R.string.noRolePermission ) + "" );
             }
         } );
 
@@ -140,23 +137,15 @@ public class WorkFragment extends BaseFragment {
                 getTop();
             }
         } );
-
-    }
-
-    //获取四个方块的数据
-    private interface GetData {
-        @FormUrlEncoded
-        @POST(Constants.MAINPAGEDATA)
-        Call<MainPageResult> getData(@FieldMap Map<String, Object> map);
     }
 
     //获取四个方块的数据
     private void getSquareData() {
         mBaseActivity.showDialog( true );
-        GetData getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetData.class );
+        BaseApi getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( BaseApi.class );
         BaseParam params = new BaseParam();
         params.setAccess_token( MyApplication.mUserInfo.getAccess_token() );
-        Call<MainPageResult> call = getData.getData( CommonUtils.getPostMap( params ) );
+        Call<MainPageResult> call = getData.getSquareData( CommonUtils.getPostMap( params ) );
         call.enqueue( new Callback<MainPageResult>() {
             @Override
             public void onResponse(final Call<MainPageResult> call, final Response<MainPageResult> response) {
@@ -181,22 +170,12 @@ public class WorkFragment extends BaseFragment {
 
                     @Override
                     public void onNetError() {
-                        squareBean = new SquareBean();
-                        squareBean.setMyproject( 0 + "" );
-                        squareBean.setCheck( 0 + "" );//审批
-                        squareBean.setHelp( 0 + "" );//求助爆料
-                        squareBean.setStudy( 0 + "" );
-                        square_x4.setAdapter( new SquareAdapter( mBaseActivity, squareBean ) );
+                        setSquareFail();
                     }
 
                     @Override
                     public void onError(String code, String message) {
-                        squareBean = new SquareBean();
-                        squareBean.setMyproject( 0 + "" );
-                        squareBean.setCheck( 0 + "" );//审批
-                        squareBean.setHelp( 0 + "" );//求助爆料
-                        squareBean.setStudy( 0 + "" );
-                        square_x4.setAdapter( new SquareAdapter( mBaseActivity, squareBean ) );
+                        setSquareFail();
                     }
                 } );
             }
@@ -206,35 +185,23 @@ public class WorkFragment extends BaseFragment {
                 mBaseActivity.showDialog( false );
                 ptr.refreshComplete();
                 MyToast.showToast( mBaseActivity, "  网络连接失败，请稍后再试  " );
-                squareBean = new SquareBean();
-                squareBean.setMyproject( 0 + "" );
-                squareBean.setCheck( 0 + "" );//审批
-                squareBean.setHelp( 0 + "" );//求助爆料
-                squareBean.setStudy( 0 + "" );
-                square_x4.setAdapter( new SquareAdapter( mBaseActivity, squareBean ) );
-
+                setSquareFail();
             }
         } );
     }
 
-    //    //获取表格数据
-//    private void getWorkTimeList(){
-//        //调接口，现在是假数据
-//        workData.clear();
-//        for (int i = 0; i <10 ; i++) {
-//            workData.add(new WorkTimeBean(4+i%4,6+i%3,i+1));
-//        }
-//        worktimeAdapter.notifyDataSetChanged();
-//    }
-    private interface GetTop {
-        @FormUrlEncoded
-        @POST(Constants.ATTENDACNE_STATISTICS)
-        Call<GetStatisticsResult> getTop(@FieldMap Map<String, Object> map);
+    private void setSquareFail(){
+        squareBean = new SquareBean();
+        squareBean.setMyproject( 0 + "" );
+        squareBean.setCheck( 0 + "" );//审批
+        squareBean.setHelp( 0 + "" );//求助爆料
+        squareBean.setStudy( 0 + "" );
+        square_x4.setAdapter( new SquareAdapter( mBaseActivity, squareBean ) );
     }
 
     private void getTop() {
         mBaseActivity.showDialog( true );
-        GetTop getTop = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetTop.class );
+        BaseApi getTop = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( BaseApi.class );
         BaseParam param = new BaseParam();
         ptr.refreshComplete();
         Call<GetStatisticsResult> call = getTop.getTop( CommonUtils.getPostMap( param ) );
@@ -251,9 +218,10 @@ public class WorkFragment extends BaseFragment {
                         workData.clear();
                         int a = 0;
                         if (data != null && data.size() != 0) {
-                            Log.i( "getTop TAG", "onSuccess: "+ data.get( data.size() - 1 ).getTime()[2] );
-                            for (int i = 0; i < data.get( data.size() - 1 ).getTime()[2]//获取数据最后的天数
-                                    ; i++) {
+                            Log.i( "sss", "onSuccess: "+ data.get( data.size() - 1 ).getTime()[2] );
+                            for (int i = 0; i < data.get( data.size() - 1 ).getTime()[2]; i++) //获取数据最后的天数
+                            {
+                                int cc = data.get( a ).getTime()[2];
                                 if (data.get( a ).getTime()[2] == i + 1) {
                                     workData.add( data.get( a ) );
                                     a++;//如果和数据的第一条匹配，加入真数据，a自加
@@ -313,57 +281,8 @@ public class WorkFragment extends BaseFragment {
         } );
     }
 
-    private interface Finish {
-        @FormUrlEncoded
-        @POST(Constants.PUSHLOCATION)
-        Call<BaseResult> getVcodeResult(@FieldMap Map<String, Object> map);
-    }
-
-    private void push() {
-        Finish finish = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( Finish.class );
-        final XYParams param = new XYParams();
-        param.setLocationLatitude( 0 + "" );
-        param.setLocationLongitude( 0 + "" );
-        param.setAccess_token( MyApplication.mUserInfo.getAccess_token() );
-
-        Call<BaseResult> call = finish.getVcodeResult( CommonUtils.getPostMap( param ) );
-        call.enqueue( new Callback<BaseResult>() {
-            @Override
-            public void onResponse(final Call<BaseResult> call, final Response<BaseResult> response) {
-                ResultHandler.Handle( mBaseActivity, response.body(), false, new ResultHandler
-                        .OnHandleListener<BaseResult>() {
-                    @Override
-                    public void onSuccess(BaseResult result) {
-                    }
-
-                    @Override
-                    public void onNetError() {
-
-                    }
-
-                    @Override
-                    public void onError(String code, String message) {
-                    }
-                } );
-            }
-
-            @Override
-            public void onFailure(Call<BaseResult> call, Throwable t) {
-//                MyToast.showToast(getApplicationContext(), "  网络连接失败，请稍后再试  ");
-            }
-        } );
-    }
-
-
-    //获取角色权限
-    private interface GetRole {
-        @FormUrlEncoded
-        @POST(Constants.ROLE_PERMISSION)
-        Call<RolePermissionResult> getRoles(@FieldMap Map<String, Object> map);
-    }
-
     private void getRole() {
-        GetRole getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetRole.class );
+        BaseApi getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( BaseApi.class );
         BaseParam params = new BaseParam();
         params.setAccess_token( MyApplication.mUserInfo.getAccess_token() );
         Call<RolePermissionResult> call = getData.getRoles( CommonUtils.getPostMap( params ) );
@@ -371,27 +290,14 @@ public class WorkFragment extends BaseFragment {
             @Override
             public void onResponse(final Call<RolePermissionResult> call, final Response<RolePermissionResult>
                     response) {
-                ResultHandler.Handle( mBaseActivity, response.body(), new ResultHandler
-                        .OnHandleListener<RolePermissionResult>() {
-
-
-                    @Override
-                    public void onSuccess(RolePermissionResult result) {
+                if(response.isSuccessful()){
+                    RolePermissionResult result = response.body();
+                    Log.i( "TAG", "onSuccess: " + result.toString() );
+                    if (result != null && result.getCode().equals( "0000" ) && result.getData() != null) {
                         Log.i( "TAG", "onSuccess: " + result.toString() );
-                        if (result != null && result.getCode().equals( "0000" ) && result.getData() != null) {
-                            Log.i( "TAG", "onSuccess: " + result.toString() );
-                            roleData = result.getData();
-                        }
+                        roleData = result.getData();
                     }
-
-                    @Override
-                    public void onNetError() {
-                    }
-
-                    @Override
-                    public void onError(String code, String message) {
-                    }
-                } );
+                }
             }
 
             @Override
