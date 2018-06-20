@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BaoAn.iml" filepath="$PROJECT_DIR$/.idea/BaoAn.iml" />
       <module fileurl="file://$PROJECT_DIR$/BaoAn.iml" filepath="$PROJECT_DIR$/BaoAn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BaoAn.iml" filepath="$PROJECT_DIR$/.idea/BaoAn.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/calendarlibrary/calendarlibrary.iml" filepath="$PROJECT_DIR$/calendarlibrary/calendarlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/gallerypick/gallerypick.iml" filepath="$PROJECT_DIR$/gallerypick/gallerypick.iml" />

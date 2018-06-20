@@ -33,6 +33,7 @@ import com.hz.junxinbaoan.R;
 import com.hz.junxinbaoan.activity.base.BaseActivity;
 import com.hz.junxinbaoan.activity.dialog.Apk_dialog;
 import com.hz.junxinbaoan.activity.dialog.LoadingDialog;
+import com.hz.junxinbaoan.api.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.params.BaseParam;
 import com.hz.junxinbaoan.params.LoginParam;
@@ -385,21 +386,13 @@ public class LoginActivity extends BaseActivity implements DownApk.ProgressState
         MyApplication.getInstance().finish();
     }
 
-
-    //版本
-    private interface GetData3 {
-        @FormUrlEncoded
-        @POST(Constants.VCODE)
-        Call<CodeResult> getData(@FieldMap Map<String, Object> map);
-    }
-
     //版本
     private void getVCode() {
         if (apk_dialog != null && apk_dialog.isShowing()) {
             return;
         }
-        GetData3 getData = CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
-                GetData3.class );
+        BaseApi getData = CommonUtils.buildRetrofit( "http://101.37.136.249:82/", mBaseActivity ).create(
+                BaseApi.class );
         BaseParam param = new BaseParam();
         Call<CodeResult> call = getData.getData( CommonUtils.getPostMap( param ) );
         call.enqueue( new Callback<CodeResult>() {
@@ -435,6 +428,7 @@ public class LoginActivity extends BaseActivity implements DownApk.ProgressState
                                                         apk_dialog.show();
                                                         apk_dialog.setCancelable( false );
                                                         seek = apk_dialog.getSeekBar();
+                                                        //下载更新
                                                         DownApk downApk = new DownApk(vcode,myApplication,
                                                                 result.getData().get( finalJ1 ).getAppInfoUrl());
                                                         downApk.downApk();
