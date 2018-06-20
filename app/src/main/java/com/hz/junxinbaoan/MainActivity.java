@@ -4,18 +4,15 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
@@ -31,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
@@ -50,30 +46,17 @@ import com.hz.junxinbaoan.activity.mine.ChangeMineInfo;
 import com.hz.junxinbaoan.activity.mine.HelpWebActivity;
 import com.hz.junxinbaoan.activity.mine.InfoActivity;
 import com.hz.junxinbaoan.activity.setting.SettingActivity;
-import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.data.YuYinBean;
-import com.hz.junxinbaoan.params.UserParams;
-import com.hz.junxinbaoan.result.UserInfoResult;
 import com.hz.junxinbaoan.utils.CommonUtils;
 import com.hz.junxinbaoan.utils.ImageViewPlus;
 import com.hz.junxinbaoan.utils.MyToast;
-import com.hz.junxinbaoan.utils.ResultHandler;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-
 import butterknife.BindView;
 import me.weyye.hipermission.HiPermission;
 import me.weyye.hipermission.PermissionCallback;
 import me.weyye.hipermission.PermissionItem;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
 
 
 public class MainActivity extends BaseActivity {
@@ -125,15 +108,9 @@ public class MainActivity extends BaseActivity {
     EventManager asr;
     Intent startIntent;
 
-    //fragment管理
-    private FragmentManager mFragmentManager;
     //fragment列表
     private List<Fragment> mFragmentList = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
-    //选择的fragment
-    private int mSelected = 0;
-    //是否因意外销毁而重建
-    private Bundle mSavedInstance;
     private ArrayList<PermissionItem> permissionItems;
 
     @Override
@@ -166,16 +143,8 @@ public class MainActivity extends BaseActivity {
         Log.i( "sha1", CommonUtils.sHA1( mBaseActivity ) );
         startIntent = new Intent( getApplicationContext(), MyService.class );
         startService( startIntent );
-
-        mFragmentManager = getSupportFragmentManager();
         mFragmentList = new ArrayList<>();
-        Log.e( TAG, (savedInstanceState != null) + "  ," + (mFragmentManager.findFragmentByTag( "work" ) != null) +
-                ", " + (mFragmentManager.findFragmentByTag( "message" ) != null) + " ; " + (mFragmentManager
-                .findFragmentByTag( "list" ) != null) );
-        if (savedInstanceState != null) {
-            mSavedInstance = savedInstanceState;
-            Log.e( TAG,mSelected+"" );
-        }
+
     }
 
     @Override
@@ -185,7 +154,6 @@ public class MainActivity extends BaseActivity {
         help.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(mBaseActivity, HelpActivity.class));
                 startActivityForResult( new Intent( mBaseActivity, HelpWebActivity.class ), 100 );
             }
         } );
@@ -310,7 +278,6 @@ public class MainActivity extends BaseActivity {
         } );
     }
 
-
     @Override
     protected void initViews() {
         super.initViews();
@@ -352,7 +319,6 @@ public class MainActivity extends BaseActivity {
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
     }
 
-
     class TabAdapter extends FragmentPagerAdapter {
         public TabAdapter(FragmentManager fm) {
             super(fm);
@@ -383,8 +349,8 @@ public class MainActivity extends BaseActivity {
             Log.i( TAG, "onActivityResult write settings " );
             checkPermissions();
         }
-
-        getUserInfo();
+//        getUserInfo();
+        changeUI();
         Log.e( TAG, "--onResume" + getIntent().getStringExtra( "type" ) );
         if (getIntent().getStringExtra( "type" ) != null && getIntent().getStringExtra( "type" ).equals( "message" )) {
             view_pager.setCurrentItem(1);
@@ -401,63 +367,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e( TAG, "--onPause" );
-    }
-
-    //获取个人信息接口
-    private interface GetData {
-        @FormUrlEncoded
-        @POST(Constants.GETUSERINFO)
-        Call<UserInfoResult> getData(@FieldMap Map<String, Object> map);
-    }
-
-    //获取个人信息
-    private void getUserInfo() {
-        showDialog( true );
-        GetData getData = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetData.class );
-        UserParams params = new UserParams();
-        params.setPushId( CommonUtils.getPushId() );
-        params.setAccess_token( MyApplication.mUserInfo.getAccess_token() );
-        Call<UserInfoResult> call = getData.getData( CommonUtils.getPostMap( params ) );
-        call.enqueue( new Callback<UserInfoResult>() {
-            @Override
-            public void onResponse(final Call<UserInfoResult> call, final Response<UserInfoResult> response) {
-                showDialog( false );
-                ResultHandler.Handle( mBaseActivity, response.body(), new ResultHandler
-                        .OnHandleListener<UserInfoResult>() {
-                    @Override
-                    public void onSuccess(UserInfoResult result) {
-                        Log.e( TAG, "UserInfoResult : " + result.toString() );
-                        if (result.getData() != null) {
-                            MyApplication.mUserInfo.saveUserInfo( result );
-                            changeUI();
-                        }
-                    }
-
-                    @Override
-                    public void onNetError() {
-                    }
-
-                    @Override
-                    public void onError(String code, String message) {
-                    }
-                } );
-            }
-
-            @Override
-            public void onFailure(Call<UserInfoResult> call, Throwable t) {
-                if (loadingDialog.isShowing()) {
-                    showDialog( false );
-                }
-                MyToast.showToast( mBaseActivity, "  网络连接失败，请稍后再试  " );
-            }
-        } );
-    }
-
     //修改ui界面
     private void changeUI() {
         namePhone.setText( MyApplication.mUserInfo.getUserName() + " " + MyApplication.mUserInfo.getUserPhone() );
@@ -469,17 +378,7 @@ public class MainActivity extends BaseActivity {
                         .into( head_pic );
             } catch (Exception ignore) {
             }
-//            CommonUtils.loadPic(mBaseActivity, MyApplication.mUserInfo.getUserPhoto(), new CommonUtils.LoadPic() {
-//                @Override
-//                public void loadPic(byte[] bytes) {
-//                    try {
-//                        Glide.with(mBaseActivity).load(bytes).asBitmap()
-//                                .centerCrop().error(R.mipmap.mine_avbg)
-//                                .into(head_pic);
-//                    } catch (Exception ignore) {
-//                    }
-//                }
-//            });
+
         } else {
             firstname.setText( MyApplication.mUserInfo.getUserName().charAt( MyApplication.mUserInfo.getUserName()
                     .length() - 1 ) + "" );
@@ -547,10 +446,6 @@ public class MainActivity extends BaseActivity {
     };
 
 
-
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -566,6 +461,5 @@ public class MainActivity extends BaseActivity {
             box_drawer.closeDrawer( drawerLayout, false );
         }
     }
-
 
 }
