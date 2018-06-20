@@ -237,26 +237,25 @@ public class WorkFragment extends BaseFragment {
                                     max = workData.get( i ).getHourExpect();
                                 }
                             }
-                            if (max > 10 * 60 && max <= 15 * 60) {
+                            if (max > 10 * 60 && max <= 15 * 60) {//大于600小于等于900
                                 two.setText( "3" );
                                 four.setText( "6" );
                                 six.setText( "9" );
                                 eight.setText( "12" );
                                 ten.setText( "15" );
-                            } else if (max > 15 * 60 && max <= 20 * 60) {
+                            } else if (max > 15 * 60 && max <= 20 * 60) {//大于900小于等于1200
                                 two.setText( "4" );
                                 four.setText( "8" );
                                 six.setText( "12" );
                                 eight.setText( "16" );
                                 ten.setText( "20" );
-                            } else if (max > 20 * 60) {
+                            } else if (max > 20 * 60) {//大于1200
                                 two.setText( "5" );
                                 four.setText( "10" );
                                 six.setText( "15" );
                                 eight.setText( "20" );
                                 ten.setText( "24" );
                             }
-//                        workData.addAll(data);
                             worktimeAdapter.setMax( max );
                             worktimeAdapter.notifyDataSetChanged();
                         }
