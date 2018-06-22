@@ -349,7 +349,6 @@ public class MainActivity extends BaseActivity {
             Log.i( TAG, "onActivityResult write settings " );
             checkPermissions();
         }
-//        getUserInfo();
         changeUI();
         Log.e( TAG, "--onResume" + getIntent().getStringExtra( "type" ) );
         if (getIntent().getStringExtra( "type" ) != null && getIntent().getStringExtra( "type" ).equals( "message" )) {

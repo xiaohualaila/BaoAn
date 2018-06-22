@@ -23,6 +23,7 @@ import com.hz.junxinbaoan.MyApplication;
 import com.hz.junxinbaoan.R;
 import com.hz.junxinbaoan.activity.base.BaseFragment;
 import com.hz.junxinbaoan.adapter.SignAdapter;
+import com.hz.junxinbaoan.common.BaseApi;
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.data.SignDetailBean;
 import com.hz.junxinbaoan.params.GetSignDetailParam;
@@ -65,7 +66,6 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
     private static final int REQUEST_ORIGINAL = 1;
 
     private TextView noOnline;
-    //    private TextView titleName;
     private TextView time_tv;
     private RecyclerView sign_rv;
     private AnimPtrFrameLayout ptr;
@@ -110,20 +110,6 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
         Uri uri;
         takePhotoPosition = position;
         Intent intent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
-//                String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
-//                        .getPackageName();
-//                tempFile = new File( temp, getPhotoFileName() );
-//                Log.e( TAG, "takePhotos: "+ tempFile  );
-//                // 判断版本大于等于7.0
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    // "com.hz.junxinbaoan.fileProvider"即是在清单文件中配置的authorities
-//                    uri = FileProvider.getUriForFile(mBaseActivity, "com.hz.junxinbaoan.fileProvider", tempFile);
-//                    // 给目标应用一个临时授权
-//                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                } else {
-//                    uri = Uri.fromFile(tempFile);
-//                }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果是7.0android系统
             ContentValues contentValues = new ContentValues( 1 );
             String temp = Environment.getExternalStorageDirectory().getPath() + File.separator + mBaseActivity
@@ -215,9 +201,10 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
         nowDate = curDate;
         Log.e( "TAG", "initViews : " + curDate.toString() + "--" + nowDate );
 
-        signAdapter = new SignAdapter( mBaseActivity, uploadSign, this, false,this, photoTyp1Map, photoTyp2Map );
-        RecyclerViewNoBugLinearLayoutManager linearLayoutManager = new RecyclerViewNoBugLinearLayoutManager(
-                mBaseActivity );
+        signAdapter = new SignAdapter( mBaseActivity, uploadSign, this,
+                false,this, photoTyp1Map, photoTyp2Map );
+        RecyclerViewNoBugLinearLayoutManager linearLayoutManager =
+                new RecyclerViewNoBugLinearLayoutManager(mBaseActivity );
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( mBaseActivity );
         linearLayoutManager.setOrientation( LinearLayoutManager.VERTICAL );
         sign_rv.setLayoutManager( linearLayoutManager );
@@ -234,9 +221,6 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
 
         signAdapter.setDatas( signDetailList, uploadSign );
 
-//        if (nowDate != null)
-//            titleName.setText( nowDate.moth + "月" + nowDate.day + "日考勤签到" );
-        Log.e( TAG, uploadSign + " --id onResume" + nowDate.moth + "月" + nowDate.day + "日考勤签到" );
     }
 
     /**
@@ -269,33 +253,20 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
-//        mBaseActivity.getSupportFragmentManager().findFragmentByTag(NormalSignFragment.class.getSimpleName())
-// .onActivityResult
-//                (requestCode, resultCode, data);
         if (requestCode == REQUEST_ORIGINAL && resultCode == Activity.RESULT_OK) {
             // 从相机返回的数据
-//                crop( Uri.fromFile( tempFile ) );
             cropImagePath = tempFile.getAbsolutePath();
             Log.e( TAG, holderType + "cropImagePath : " + cropImagePath );
             if (holderType != null && "VH1".equals( holderType )) {
                 photoTyp1Map.add( takePhotoPosition, cropImagePath );
-//                photoType1Path.add( cropImagePath );
                 signAdapter.setPhotoType1Datas( photoTyp1Map, takePhotoPosition );
-                Log.e( TAG, holderType + takePhotoPosition + ", position点击相机 cropImagePath : " + photoTyp1Map.values
-                        () );
+                Log.e( TAG, holderType + takePhotoPosition + "," +
+                        " position点击相机 cropImagePath : " + photoTyp1Map.values() );
             } else if (holderType != null && "VH2".equals( holderType )) {
                 photoTyp2Map.add( takePhotoPosition, cropImagePath );
                 signAdapter.setPhotoType2Datas( photoTyp2Map, takePhotoPosition );
             }
-//            signAdapter.notifyItemRangeChanged( takePhotoPosition, 0 );
-//            ((LinearLayoutManager) sign_rv.getLayoutManager()).scrollToPositionWithOffset( takePhotoPosition, 0 );
         }
-    }
-
-    private interface GetDetail {
-        @FormUrlEncoded
-        @POST(Constants.ATTENDACNE_DETAIL)
-        Call<GetSignDetailResult> getDetail(@FieldMap Map<String, Object> map);
     }
 
     private synchronized void getDetail(final boolean uploadSign) {
@@ -303,7 +274,7 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
             signDetailList.clear();
             mBaseActivity.showDialog( true );
             time_tv.setText( curDate.moth + "月" + curDate.day + "日排班" );
-            GetDetail getDetail = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( GetDetail
+            BaseApi getDetail = CommonUtils.buildRetrofit( Constants.BASE_URL, mBaseActivity ).create( BaseApi
                     .class );
             GetSignDetailParam param = new GetSignDetailParam();
             param.setAttendanceDate( curDate.getParams() );
@@ -396,38 +367,8 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
                                 noOnline.setVisibility( View.VISIBLE );
                             }
 
-//                            signAdapter = new SignAdapter( mBaseActivity, new SignAdapter.RefreshUIInterface() {
-//                                @Override
-//                                public void refresh() {
-//                                    signAdapter.clearData();
-//                                    getDetail( uploadSign );
-//                                }
-//
-//                                @Override
-//                                public void showLoading(boolean show) {
-//                                    mBaseActivity.showDialog( show );
-//                                }
-//                            }, false, new SignAdapter.TakePhotoUIInterface() {
-//                                @Override
-//                                public void takePhotos(String holder) {
-//                                    Log.e( TAG, "getDetail takePhotos: onSuccess---"  );
-//                                    Intent intent = new Intent( "android.media.action.IMAGE_CAPTURE" );
-//                                    tempFile = new File( Settings.PIC_PATH, getPhotoFileName() );
-//                                    Log.e( TAG, holder + " -- tempFile:" + tempFile.toString() );
-//                                    // 从文件中创建uri
-//                                    Uri uri = Uri.fromFile( tempFile );
-//                                    //为拍摄的图片指定一个存储的路径
-//                                    intent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
-//                                    startActivityForResult( intent, REQUEST_ORIGINAL );
-//                                    holderType = holder;
-//                                }
-//                            }, photoType1Path, photoType2Path );
-
                             callBackValue.SendSignNormalValue( signDetailList.size() );
                             signAdapter.setDatas( signDetailList, uploadSign );
-//                            sign_rv.setAdapter( signAdapter );
-
-
                         }
 
                         @Override
@@ -460,34 +401,7 @@ public class NormalSignFragment extends BaseFragment implements SignAdapter.Refr
     }
 
     private void setErrorData() {
-//        signAdapter = new SignAdapter( mBaseActivity, new SignAdapter.RefreshUIInterface() {
-//            @Override
-//            public void refresh() {
-//                signAdapter.clearData();
-//                getDetail( uploadSign );
-//            }
-//
-//            @Override
-//            public void showLoading(boolean show) {
-//                mBaseActivity.showDialog( show );
-//            }
-//        }, false, new SignAdapter.TakePhotoUIInterface() {
-//            @Override
-//            public void takePhotos(String holder) {
-//                Log.e( TAG, "takePhotos: setErrorData---"  );
-//                Intent intent = new Intent( "android.media.action.IMAGE_CAPTURE" );
-//                tempFile = new File( Settings.PIC_PATH, getPhotoFileName() );
-//                Log.e( TAG, holder + " -- tempFile:" + tempFile.toString() );
-//                // 从文件中创建uri
-//                Uri uri = Uri.fromFile( tempFile );
-//                //为拍摄的图片指定一个存储的路径
-//                intent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
-//                startActivityForResult( intent, REQUEST_ORIGINAL );
-//                holderType = holder;
-//            }
-//        }, photoType1Path, photoType2Path );
         signAdapter.setDatas( new ArrayList<SignDetailBean>(), uploadSign );
-//        sign_rv.setAdapter( signAdapter );
     }
 
 }

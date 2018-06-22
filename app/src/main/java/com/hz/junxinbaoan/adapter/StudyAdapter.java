@@ -130,13 +130,6 @@ public class StudyAdapter extends BaseAdapter {
 
                         Log.e("TAG - 学习中心",result.toString());
                         Intent intent=new Intent(context, WebViewActivity.class);
-//                        intent.putExtra("id",list.get(position).getLearnId());
-//                        intent.putExtra("title","详情");
-//                        intent.putExtra("company",list.get(position).getLearnShowName());
-//                        intent.putExtra("content",list.get(position).getLearnContent());
-//                        intent.putExtra("dTitle",list.get(position).getLearnTitle());
-//                        intent.putExtra("addTime",list.get(position).getAddTime());
-//                        intent.putExtra("url",list.get(position).getLearnPictures());
                         StudyDetailResult.DataBean data = result.getData();
                         intent.putExtra("id",data.getLearnId());
                         intent.putExtra("title","详情");

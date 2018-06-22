@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hz.junxinbaoan.MainActivity;
 import com.hz.junxinbaoan.MyApplication;
@@ -67,7 +68,7 @@ public class WelcomeActivity extends BaseActivity {
                     @Override
                     public void onClose() {
                         Log.i( "TAG", "close" );
-                        //用户关闭权限申请
+                       toastLong("您拒绝了权限应用无法使用！");
                         finish();
                     }
 
@@ -75,7 +76,6 @@ public class WelcomeActivity extends BaseActivity {
                     public void onFinish() {
                         //版本检测
                         getVCode();
-//                        myTimer.start();
                     }
 
                     @Override

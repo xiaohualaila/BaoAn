@@ -41,8 +41,6 @@ public abstract class BaseFragment extends Fragment {
         my_save=getActivity().getApplicationContext().getSharedPreferences("ADDRESS", Context.MODE_PRIVATE);
         getIntentData();
         initViews(view);
-
-
         addListeners();
         requestOnViewCreated();
     }

@@ -21,41 +21,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="22dp">-->
-
-                <!--<com.hz.junxinbaoan.utils.ImageViewPlus-->
-                <!--android:layout_width="10dp"-->
-                <!--android:layout_height="10dp"-->
-                <!--android:src="#2196F3"-->
-                <!--android:layout_marginLeft="23dp"-->
-                <!--android:layout_gravity="center_vertical"/>-->
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="实际"-->
-                <!--android:layout_marginLeft="6dp"-->
-                <!--android:textColor="#485465"-->
-                <!--/>-->
-
-                <!--<com.hz.junxinbaoan.utils.ImageViewPlus-->
-                <!--android:layout_width="10dp"-->
-                <!--android:layout_height="10dp"-->
-                <!--android:src="#CBE4F6"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:layout_gravity="center_vertical"/>-->
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="排班"-->
-                <!--android:layout_marginLeft="6dp"-->
-                <!--android:textColor="#485465"-->
-                <!--/>-->
-
-                <!--</LinearLayout>-->
-
                 <TextView
                     android:id="@+id/time_tv"
                     android:layout_width="wrap_content"
