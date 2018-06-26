@@ -2,6 +2,9 @@ package com.hz.junxinbaoan.common;
 
 import com.hz.junxinbaoan.common.Constants;
 import com.hz.junxinbaoan.result.CodeResult;
+import com.hz.junxinbaoan.result.GetStatisticsResult;
+import com.hz.junxinbaoan.result.MainPageResult;
+import com.hz.junxinbaoan.result.RolePermissionResult;
 import com.hz.junxinbaoan.result.UserInfoResult;
 
 import java.util.Map;
@@ -19,4 +22,16 @@ public interface BaseApi {
     @FormUrlEncoded
     @POST(Constants.GETUSERINFO)
     Call<UserInfoResult> getUserInfo(@FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @POST(Constants.GETUSERINFO)
+    Call<RolePermissionResult> getRoles(@FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @POST(Constants.GETUSERINFO)
+    Call<GetStatisticsResult> getTop(@FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @POST(Constants.GETUSERINFO)
+    Call<MainPageResult> getSquareData(@FieldMap Map<String, Object> map);
 }
